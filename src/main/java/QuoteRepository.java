@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -8,16 +9,22 @@ public class QuoteRepository {
 
 	public QuoteRepository() {
 		super();
-		Quote obama = new Quote("Obama", "Yes we can!", 2009);
+		Quote obama = new Quote("Obama", "Obama", 2009, 1);
 		quotes.add(obama);
-		Quote king = new Quote("Martin Luther King", "I Have a Dream", 1950);
+		Quote king = new Quote("Martin Luther King", "pieter geens", 1950, 3);
 		quotes.add(king);
-		Quote x = new Quote("XXX", "Great is the art of beginning, but greater is the art of ending.", 1945);
+		Quote x = new Quote("XXX", "rudiy swennen", 1945, 2);
 		quotes.add(x);
 	}
 
-	public void addQuote (String quote) {
-		quotes.add(new Quote("Elke Steegmans", quote, 2020));
+	public void addQuote (String str) {
+		String kept = str.substring( 0, str.indexOf(","));
+		String kept2 = str.substring( str.indexOf(",")+1);
+
+		int numb = Integer.parseInt(kept2);
+
+		quotes.add(new Quote("Elke Steegmans", kept, 2020, numb));
+
 	}
 
 	public Quote getRandomQuote() {
@@ -26,5 +33,16 @@ public class QuoteRepository {
 		Quote quote = quotes.get(position);
 		return quote;
 	}
+	public ArrayList<Quote> getTop3Quotes(){
+		ArrayList<Quote> b = new ArrayList<>(quotes);
+		ArrayList<Quote> top3 = new ArrayList<>();
+		Collections.sort(b);
+		top3.add(b.get(0));
+		top3.add(b.get(1));
+		top3.add(b.get(2));
+		Collections.sort(top3);
+		return top3;
+	}
+
 
 }

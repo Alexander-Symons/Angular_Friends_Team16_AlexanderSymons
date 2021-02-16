@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,14 +21,22 @@ public class ManageQuoteServlet extends HttpServlet {
 	}   	
 		
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Quote quote = quoteRepository.getRandomQuote();
+		Quote quote = quoteRepository.getTop3Quotes().get(0);
+		Quote quote2 = quoteRepository.getTop3Quotes().get(1);
+		Quote quote3 = quoteRepository.getTop3Quotes().get(2);
 		String quoteJSON = this.toJSON(quote);
+		String quote2JSON = this.toJSON(quote2);
+		String quote3JSON = this.toJSON(quote3);
+		String allJson = "["+ quoteJSON + "," + quote2JSON +"," + quote3JSON +"]";
+		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
-		response.getWriter().write(quoteJSON);
+		response.getWriter().write(allJson);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String quote = (String)request.getParameter("quote");
+		System.out.println(quote);
 		quoteRepository.addQuote(quote);
 	}
 

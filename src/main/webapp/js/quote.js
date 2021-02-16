@@ -41,17 +41,36 @@ function showQuotes () {
 		if (getNewQuoteRequest.status == 200) {
 			let quote = JSON.parse(getNewQuoteRequest.responseText);
 
-			let quoteDiv = document.getElementById("quote");
+			let quoteDiv = document.getElementById("personeelslid1");
+			let quoteDiv2 = document.getElementById("personeelslid2");
+			let quoteDiv3 = document.getElementById("personeelslid3");
 			let quoteParagraph = quoteDiv.childNodes[0];
-			let quoteText = document.createTextNode(quote.text); // kan ook quote["text"]
+			let quoteParagraph2 = quoteDiv2.childNodes[0];
+			let quoteParagraph3 = quoteDiv3.childNodes[0];
+			let quoteText = document.createTextNode(quote[0].text); // kan ook quote["text"]
+			let quoteText2 = document.createTextNode(quote[1].text);
+			let quoteText3 = document.createTextNode(quote[2].text);
+			console.log(quote[1].text)
+			console.log(quote[2].text)
 
 			if (quoteParagraph == null) {
 				quoteParagraph = document.createElement('p');
 				quoteParagraph.appendChild(quoteText);
+				quoteParagraph2 = document.createElement('p');
+				quoteParagraph2.appendChild(quoteText2);
+				quoteParagraph3 = document.createElement('p');
+				quoteParagraph3.appendChild(quoteText3);
 				quoteDiv.appendChild(quoteParagraph);
+				quoteDiv2.appendChild(quoteParagraph2);
+				quoteDiv3.appendChild(quoteParagraph3);
+
 			} else {
 				quoteParagraph.removeChild(quoteParagraph.childNodes[0]);
 				quoteParagraph.appendChild(quoteText);
+				quoteParagraph2.removeChild(quoteParagraph2.childNodes[0]);
+				quoteParagraph2.appendChild(quoteText2);
+				quoteParagraph3.removeChild(quoteParagraph3.childNodes[0]);
+				quoteParagraph3.appendChild(quoteText3);
 			}
 			setTimeout(getNewQuote, 1000);
 		}
@@ -60,8 +79,10 @@ function showQuotes () {
 
 function addQuote () {
 	let quoteText = document.getElementById("quotetext").value;
+	let quoteScore = document.getElementById("quotescore").value;
 	// encodeURIComponent om UTF-8 te gebruiken en speciale karakters om te zetten naar code
-	let information = "quote=" + encodeURIComponent(quoteText);
+	let information = "quote=" + encodeURIComponent(quoteText) + "," + encodeURIComponent(quoteScore);
+	console.log(information);
 	newQuoteRequest.open("POST", "ManageQuoteServlet", true);
 	// belangrijk dat dit gezet wordt anders kan de servlet de informatie niet interpreteren!!!
 	// protocol header information

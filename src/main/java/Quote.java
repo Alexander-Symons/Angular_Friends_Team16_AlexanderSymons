@@ -1,9 +1,10 @@
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class Quote {
+public class Quote implements Comparable<Quote> {
 	
 	private String author;
 	private String text;
+	private int score;
 	@JsonIgnore
 	private int year;
 	
@@ -13,7 +14,15 @@ public class Quote {
 		setText(text);
 		setYear(year);
 	}
-	
+	public Quote(String author, String text, int year, int score) {
+		super();
+		setAuthor(author);
+		setText(text);
+		setYear(year);
+		setScore(score);
+	}
+
+
 	public String getAuthor() {
 		return author;
 	}
@@ -37,5 +46,20 @@ public class Quote {
 	public void setYear(int year) {
 		this.year = year;
 	}
-	
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	@Override
+	public int compareTo(Quote o) {
+		if(this.getScore() <= o.getScore()){
+			return 1;
+		}
+		else return -1;
+	}
 }
