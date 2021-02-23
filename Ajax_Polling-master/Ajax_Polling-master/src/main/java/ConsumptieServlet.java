@@ -14,6 +14,7 @@ public class ConsumptieServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private ConsumptieRepository consumptieRepository;
+    // test
 
     public ConsumptieServlet(){
         consumptieRepository = new ConsumptieRepository();
