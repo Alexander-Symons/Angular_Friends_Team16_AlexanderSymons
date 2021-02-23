@@ -25,4 +25,10 @@ public class ConsumptieRepository {
     public ArrayList<Consumptie> getAllConsumpties(){
         return consumptieList;
     }
+    public Consumptie getRandomConsumptie(){
+        int n = consumptieList.size();
+        //Random rn = new Random();
+        //int i = rn.nextInt() % n;
+        return consumptieList.get((int)(Math.random() * n));
+    }
 }

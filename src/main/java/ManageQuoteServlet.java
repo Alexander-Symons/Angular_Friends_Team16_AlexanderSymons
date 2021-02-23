@@ -12,26 +12,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ManageQuoteServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private QuoteRepository quoteRepository;
+    private ConsumptieRepository quoteRepository;
 
     public ManageQuoteServlet() {
         super();
-        quoteRepository = new QuoteRepository();
+        quoteRepository = new ConsumptieRepository();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Quote quote = quoteRepository.getRandomQuote();
-        String quoteJSON = this.toJSON(quote);
+        String consumptie = quoteRepository.getRandomConsumptie().getNaam();
+        String quoteJSON = this.toJSON(consumptie);
         response.setContentType("application/json");
         response.getWriter().write(quoteJSON);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String quote = (String)request.getParameter("quote");
-        quoteRepository.addQuote(quote);
     }
 
-    private String toJSON (Quote quote) throws JsonProcessingException {
+    private String toJSON (Object quote) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(quote);
     }

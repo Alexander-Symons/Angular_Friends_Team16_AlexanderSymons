@@ -43,16 +43,17 @@ function showQuotes () {
 
             let quoteDiv = document.getElementById("quote");
             let quoteParagraph = quoteDiv.childNodes[0];
-            let quoteText = document.createTextNode(quote.text); // kan ook quote["text"]
+            let quoteText = document.createTextNode(quote); // kan ook quote["text"]
 
             if (quoteParagraph == null) {
                 quoteParagraph = document.createElement('p');
                 quoteParagraph.appendChild(quoteText);
                 quoteDiv.appendChild(quoteParagraph);
-            } else {
-                quoteParagraph.removeChild(quoteParagraph.childNodes[0]);
-                quoteParagraph.appendChild(quoteText);
             }
+            // else {
+            //     quoteParagraph.removeChild(quoteParagraph.childNodes[0]);
+            //     quoteParagraph.appendChild(quoteText);
+            // }
             setTimeout(getNewQuote, 1000);
         }
     }
