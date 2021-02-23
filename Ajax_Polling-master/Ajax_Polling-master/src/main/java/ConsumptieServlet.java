@@ -1,11 +1,16 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
+import javax.json.JsonException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.json.JsonObject;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -28,9 +33,26 @@ public class ConsumptieServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(request.getParameter("naam"));
-        Consumptie consumptie = new Consumptie(request.getParameter("naam"), request.getParameter("beschrijving"), request.getParameter("type"), Double.parseDouble(request.getParameter("prijs")));
-        consumptieRepository.addConsumptie(consumptie);
+        StringBuffer jb = new StringBuffer();
+        String line = null;
+        try {
+            BufferedReader reader = request.getReader();
+            while ((line = reader.readLine()) != null)
+                jb.append(line);
+        } catch (Exception e) { /*report an error*/ }
+        Gson g = new Gson();
+        Consumptie c = null;
+        try {
+            c =  g.fromJson(jb.toString(), Consumptie.class);
+        } catch (Exception e) {
+            // crash and burn
+            throw new IOException("Error parsing JSON request string");
+        }
+        if (c != null){
+            consumptieRepository.addConsumptie(c);
+        }
+        RequestDispatcher r = request.getRequestDispatcher("/index.html");
+        r.forward(request, response);
     }
 
     private String toJSON (ArrayList<Consumptie> consumpties) throws JsonProcessingException {

@@ -4,6 +4,7 @@ let btnConsumptie = document.getElementById('btnConsumptie');
 btnConsumptie.onclick = addConsumptie;
 
 function getAllConsumpties () {
+    console.log("test");
     fetch("/ConsumptieServlet")
         .then(response => response.json())
         .then((data => showConsumpties(data)));
@@ -41,7 +42,7 @@ function showConsumpties(consumpties) {
     }
 }
 
-function addConsumptie() {
+async function addConsumptie() {
 
     let naam = document.getElementById("naam").value;
     let beschrijving = document.getElementById("beschrijving").value;
@@ -62,9 +63,8 @@ function addConsumptie() {
         }),
         headers: {'Content-type': 'application/json; charset=UTF-8'}
     }
-
-    fetch("ConsumptieServlet", options);
-
+    let test = await fetch("ConsumptieServlet", options);
+    location.reload()
 }
 
 

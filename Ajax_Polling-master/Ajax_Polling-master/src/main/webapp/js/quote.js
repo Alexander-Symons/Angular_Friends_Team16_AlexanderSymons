@@ -67,4 +67,5 @@ function addQuote () {
 	// protocol header information
 	newQuoteRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	newQuoteRequest.send(information);
+
 }
