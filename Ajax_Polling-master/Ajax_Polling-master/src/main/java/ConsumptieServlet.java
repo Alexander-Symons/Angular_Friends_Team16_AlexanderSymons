@@ -51,8 +51,6 @@ public class ConsumptieServlet extends HttpServlet {
         if (c != null){
             consumptieRepository.addConsumptie(c);
         }
-        RequestDispatcher r = request.getRequestDispatcher("/index.html");
-        r.forward(request, response);
     }
 
     private String toJSON (ArrayList<Consumptie> consumpties) throws JsonProcessingException {
