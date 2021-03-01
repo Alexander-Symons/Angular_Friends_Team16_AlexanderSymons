@@ -11,6 +11,9 @@ public class Consumptie {
         setType(type);
         setPrijs(prijs);
     }
+    public Consumptie(String naam){
+        setNaam(naam);
+    }
 
     public String getNaam() {
         return naam;

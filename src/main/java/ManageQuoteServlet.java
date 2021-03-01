@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,19 +21,24 @@ public class ManageQuoteServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String consumptie = quoteRepository.getRandomConsumptie().getNaam();
-        String quoteJSON = this.toJSON(consumptie);
+        ArrayList<Consumptie> consumpties = quoteRepository.getAllConsumpties();
+        String quoteJSON = this.toJSON(consumpties);
         response.setContentType("application/json");
         response.getWriter().write(quoteJSON);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String quote = (String)request.getParameter("quote");
+        System.out.println(quote);
+        quoteRepository.addConsumptie(quote);
     }
 
     private String toJSON (Object quote) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(quote);
+    }
+    protected void searchbutton(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("test");
     }
 
 }

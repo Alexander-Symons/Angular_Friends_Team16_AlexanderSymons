@@ -22,6 +22,19 @@ public class ConsumptieRepository {
     public void addConsumptie(Consumptie consumptie){
         this.consumptieList.add(consumptie);
     }
+    public void addConsumptie(String naam){
+        Consumptie c = new Consumptie(naam);
+        consumptieList.add(c);
+    }
+    public ArrayList<Consumptie> getPizzas(){
+        ArrayList<Consumptie> result = new ArrayList<>();
+        for(Consumptie c : getAllConsumpties()){
+           if(c.getNaam().substring(0,5).equals("pizza")){
+               System.out.println("pizza");
+           }
+        }
+        return result;
+    }
 
     public ArrayList<Consumptie> getAllConsumpties(){
         return consumptieList;
