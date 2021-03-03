@@ -13,6 +13,7 @@ import java.util.Set;
 public class BlogServlet {
     private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
 
+
     @OnOpen
     public void onOpen(Session session){
         sessions.add(session);
