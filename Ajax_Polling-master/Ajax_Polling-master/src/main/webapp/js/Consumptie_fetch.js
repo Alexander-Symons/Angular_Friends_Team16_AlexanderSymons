@@ -30,7 +30,7 @@ function showConsumpties(consumpties) {
         let cellD = document.createElement("td");
 
         cellA.innerHTML = consumpties[i].naam;
-        cellB.innerHTML = consumpties[i].bescchrijving;
+        cellB.innerHTML = consumpties[i].beschrijving;
         cellC.innerHTML = consumpties[i].type;
         cellD.innerHTML = consumpties[i].prijs;
 

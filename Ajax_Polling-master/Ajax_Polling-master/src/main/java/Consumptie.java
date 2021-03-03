@@ -1,7 +1,7 @@
 public class Consumptie {
 
     private String naam;
-    private String bescchrijving;
+    private String beschrijving;
     private String type;
     private double prijs;
 
@@ -21,11 +21,11 @@ public class Consumptie {
     }
 
     public String getBescchrijving() {
-        return bescchrijving;
+        return beschrijving;
     }
 
     public void setBescchrijving(String bescchrijving) {
-        this.bescchrijving = bescchrijving;
+        this.beschrijving = bescchrijving;
     }
 
     public String getType() {
