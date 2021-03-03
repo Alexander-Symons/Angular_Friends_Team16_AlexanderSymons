@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/opdracht-team16.iml" filepath="$PROJECT_DIR$/.idea/opdracht-team16.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ajax_Polling.iml" filepath="$PROJECT_DIR$/Ajax_Polling.iml" />
     </modules>
   </component>
 </project>
