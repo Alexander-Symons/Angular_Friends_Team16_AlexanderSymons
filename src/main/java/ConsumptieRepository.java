@@ -35,9 +35,15 @@ public class ConsumptieRepository {
         }
         return result;
     }
+    public Consumptie getConsumptie(int id){
+        return consumptieList.get(id);
+    }
 
     public ArrayList<Consumptie> getAllConsumpties(){
         return consumptieList;
+    }
+    public void setAllConsumpties(ArrayList<Consumptie> c ){
+        this.consumptieList = c ;
     }
     public Consumptie getRandomConsumptie(){
         int n = consumptieList.size();

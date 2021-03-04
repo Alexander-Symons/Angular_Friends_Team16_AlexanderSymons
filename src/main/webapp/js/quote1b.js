@@ -1,30 +1,31 @@
 window.onload = getNewQuote;
 
-let quotebutton = document.getElementById('quotebutton');
-quotebutton.onclick = addQuote;
+// let quotebutton = document.getElementById('quotebutton');
+// quotebutton.onclick = addQuote;
 // mag NIET addQuote() zijn hier
 // anders wordt het maar 1 keer uitgevoerd, namelijk na het laden van de html pagina
 // en het moet telkens wanneer er op de button wordt gedrukt uitgevoerd worden
 
-let getNewQuoteRequest = new XMLHttpRequest();
+// let getNewQuoteRequest = new XMLHttpRequest();
 // 0
 // The request is not initialized.
 // After you have created the XMLHttpRequest object, but before you have called the open() method.
-let newQuoteRequest = new XMLHttpRequest();
+// let newQuoteRequest = new XMLHttpRequest();
 
 function getNewQuote () {
-	getNewQuoteRequest.open("GET", "ScoreServlet", true);
+	// getNewQuoteRequest.open("GET", "ScoreServlet", true);
 	// 1
 	// The request has been set up.
 	// After you have called the open() method, but before you have called send().
-	getNewQuoteRequest.onreadystatechange = showQuotes;
+	// getNewQuoteRequest.onreadystatechange = showQuotes;
 	// mag NIET showQuotes() zijn
 	// want dat wordt het maar 1 keer uitgevoerd
 	// en het moet telkens wanneer de readystate van het xhr veranderd worden uitgevoerd
-	getNewQuoteRequest.send();
+	// getNewQuoteRequest.send();
 	// 2
 	// The request has been sent.
 	// After you have called send().
+	fetch("/ScoreServlet?command=test").then(response=>response.json()).then(data=> showQuotes(data))
 }
 
 // 3
@@ -36,10 +37,10 @@ function getNewQuote () {
 // After the request has been completed, and the response data has been completely received from the server.
 
 // callback function
-function showQuotes () {
-	if (getNewQuoteRequest.readyState == 4) {
-		if (getNewQuoteRequest.status == 200) {
-			let quote = JSON.parse(getNewQuoteRequest.responseText);
+function showQuotes (quote) {
+	// if (getNewQuoteRequest.readyState == 4) {
+	// 	if (getNewQuoteRequest.status == 200) {
+	// 		let quote = JSON.parse(getNewQuoteRequest.responseText);
 
 			let quoteDiv = document.getElementById("personeelslid1");
 			let quoteDiv2 = document.getElementById("personeelslid2");
@@ -73,8 +74,8 @@ function showQuotes () {
 				quoteParagraph3.appendChild(quoteText3);
 			}
 			setTimeout(getNewQuote, 1000);
-		}
-	}
+	// 	}
+	// }
 }
 
 function addQuote () {

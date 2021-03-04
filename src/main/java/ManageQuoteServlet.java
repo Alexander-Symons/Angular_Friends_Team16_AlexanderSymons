@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,16 +22,53 @@ public class ManageQuoteServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ArrayList<Consumptie> consumpties = quoteRepository.getAllConsumpties();
-        String quoteJSON = this.toJSON(consumpties);
-        response.setContentType("application/json");
-        response.getWriter().write(quoteJSON);
+        request(request,response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String quote = (String)request.getParameter("quote");
-        System.out.println(quote);
-        quoteRepository.addConsumptie(quote);
+        request(request, response);
+    }
+    protected void request(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String command = "w";
+        if(request.getParameter("command") != null) {
+            command = request.getParameter("command");
+        }
+        switch (command) {
+            case "edit":
+                System.out.println("number");
+                System.out.println(request.getParameter("number"));
+                int editnumber = Integer.parseInt(request.getParameter("number"));
+                String text = request.getParameter("quote");
+                System.out.println(text);
+                quoteRepository.getAllConsumpties().get(editnumber).setNaam(text);
+                break;
+            case "editpage":
+                System.out.println(request.getParameter("number"));
+                Consumptie c =quoteRepository.getConsumptie(Integer.parseInt(request.getParameter("number")));
+                String quoteJSON = this.toJSON(c);
+                response.setContentType("application/json");
+                response.getWriter().write(quoteJSON);
+                break;
+            case "post":
+                String quote = (String)request.getParameter("quote");
+                System.out.println(quote);
+                quoteRepository.addConsumptie(quote);
+                break;
+            case "delete":
+                ArrayList<Consumptie> deletelist = quoteRepository.getAllConsumpties();
+                int i = Integer.parseInt(request.getParameter("number"));
+                System.out.println(i);
+                deletelist.remove(i);
+                quoteRepository.setAllConsumpties(deletelist);
+                break;
+
+            default:
+                ArrayList<Consumptie> consumpties = quoteRepository.getAllConsumpties();
+                String quoteJSON2 = this.toJSON(consumpties);
+                response.setContentType("application/json");
+                response.getWriter().write(quoteJSON2);
+        }
+
     }
 
     private String toJSON (Object quote) throws JsonProcessingException {

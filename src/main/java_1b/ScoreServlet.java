@@ -20,16 +20,24 @@ public class ScoreServlet extends HttpServlet {
 	}   	
 		
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		EmployeeScore employeeScore = scoreRepository.getTop3Quotes().get(0);
-		EmployeeScore employeeScore2 = scoreRepository.getTop3Quotes().get(1);
-		EmployeeScore employeeScore3 = scoreRepository.getTop3Quotes().get(2);
-		String quoteJSON = this.toJSON(employeeScore);
-		String quote2JSON = this.toJSON(employeeScore2);
-		String quote3JSON = this.toJSON(employeeScore3);
-		String allJson = "["+ quoteJSON + "," + quote2JSON +"," + quote3JSON +"]";
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("application/json");
-		response.getWriter().write(allJson);
+		String command = "w";
+		if(request.getParameter("command") != null) {
+			command = request.getParameter("command");
+		}
+		switch (command) {
+			default:
+			EmployeeScore employeeScore = scoreRepository.getTop3Quotes().get(0);
+			EmployeeScore employeeScore2 = scoreRepository.getTop3Quotes().get(1);
+			EmployeeScore employeeScore3 = scoreRepository.getTop3Quotes().get(2);
+			String quoteJSON = this.toJSON(employeeScore);
+			String quote2JSON = this.toJSON(employeeScore2);
+			String quote3JSON = this.toJSON(employeeScore3);
+			String allJson = "[" + quoteJSON + "," + quote2JSON + "," + quote3JSON + "]";
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("application/json");
+			response.getWriter().write(allJson);
+
+		}
 
 	}
 
