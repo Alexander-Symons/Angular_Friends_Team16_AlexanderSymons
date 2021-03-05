@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/ManageQuoteServlet")
-public class ManageQuoteServlet extends HttpServlet {
+@WebServlet("/ConsumptieServlet")
+public class ConsumptieServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private ConsumptieRepository quoteRepository;
 
-    public ManageQuoteServlet() {
+    public ConsumptieServlet() {
         super();
         quoteRepository = new ConsumptieRepository();
     }
@@ -34,13 +34,26 @@ public class ManageQuoteServlet extends HttpServlet {
             command = request.getParameter("command");
         }
         switch (command) {
+            case "search":
+                ArrayList<Consumptie> pizzas = quoteRepository.getAllPizzas();
+                String quoteJSON3 = this.toJSON(pizzas);
+                response.setContentType("application/json");
+                response.getWriter().write(quoteJSON3);
+                break;
             case "edit":
+                String editfoodname = (String)request.getParameter("foodname");
+                String editfooddescription = (String)request.getParameter("fooddescription");
+                String editfoodtype = (String)request.getParameter("foodtype");
+                Double editfoodprice = Double.parseDouble(request.getParameter("foodprice"));
                 System.out.println("number");
                 System.out.println(request.getParameter("number"));
                 int editnumber = Integer.parseInt(request.getParameter("number"));
                 String text = request.getParameter("quote");
                 System.out.println(text);
-                quoteRepository.getAllConsumpties().get(editnumber).setNaam(text);
+                quoteRepository.getAllConsumpties().get(editnumber).setNaam(editfoodname);
+                quoteRepository.getAllConsumpties().get(editnumber).setBeschrijving(editfooddescription);
+                quoteRepository.getAllConsumpties().get(editnumber).setType(editfoodtype);
+                quoteRepository.getAllConsumpties().get(editnumber).setPrijs(editfoodprice);
                 break;
             case "editpage":
                 System.out.println(request.getParameter("number"));
@@ -50,9 +63,12 @@ public class ManageQuoteServlet extends HttpServlet {
                 response.getWriter().write(quoteJSON);
                 break;
             case "post":
-                String quote = (String)request.getParameter("quote");
-                System.out.println(quote);
-                quoteRepository.addConsumptie(quote);
+                String foodname = (String)request.getParameter("foodname");
+                String fooddescription = (String)request.getParameter("fooddescription");
+                String foodtype = (String)request.getParameter("foodtype");
+                String foodprice = (String)request.getParameter("foodprice");
+                Consumptie consumptie = new Consumptie(foodname,fooddescription,foodtype,Double. parseDouble(foodprice));
+                quoteRepository.addConsumptie(consumptie);
                 break;
             case "delete":
                 ArrayList<Consumptie> deletelist = quoteRepository.getAllConsumpties();

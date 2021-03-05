@@ -1,13 +1,13 @@
 public class Consumptie {
 
     private String naam;
-    private String bescchrijving;
+    private String beschrijving;
     private String type;
     private double prijs;
 
     public Consumptie(String naam, String bescchrijving, String type, double prijs){
         setNaam(naam);
-        setBescchrijving(bescchrijving);
+        setBeschrijving(bescchrijving);
         setType(type);
         setPrijs(prijs);
     }
@@ -23,12 +23,12 @@ public class Consumptie {
         this.naam = naam;
     }
 
-    public String getBescchrijving() {
-        return bescchrijving;
+    public String getBeschrijving() {
+        return beschrijving;
     }
 
-    public void setBescchrijving(String bescchrijving) {
-        this.bescchrijving = bescchrijving;
+    public void setBeschrijving(String bescchrijving) {
+        this.beschrijving = bescchrijving;
     }
 
     public String getType() {

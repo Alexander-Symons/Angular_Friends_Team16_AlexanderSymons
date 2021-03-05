@@ -1,22 +1,11 @@
 window.onload = getNewQuote;
-
-let quotebutton = document.getElementById('quotebutton');
-quotebutton.onclick = addQuote;
-
-let searchbutton = document.getElementById('searchbutton');
-searchbutton.onclick = search;
-// mag NIET addQuote() zijn hier
-// anders wordt het maar 1 keer uitgevoerd, namelijk na het laden van de html pagina
-// en het moet telkens wanneer er op de button wordt gedrukt uitgevoerd worden
-
 let getNewQuoteRequest = new XMLHttpRequest();
-// 0
-// The request is not initialized.
-// After you have created the XMLHttpRequest object, but before you have called the open() method.
-let newQuoteRequest = new XMLHttpRequest();
 
-function getNewQuote () {
-    getNewQuoteRequest.open("GET", "ConsumptieServlet", true);
+let backbutton = document.getElementById('backbutton');
+backbutton.onclick = back;
+
+function getNewQuote() {
+    getNewQuoteRequest.open("GET", "ConsumptieServlet?command=search", true);
     // 1
     // The request has been set up.
     // After you have called the open() method, but before you have called send().
@@ -103,52 +92,6 @@ function showQuotes () {
         }
     }
 }
-
-async function addQuote () {
-    console.log("test")
-
-    let foodname = document.getElementById("foodname").value;
-    let fooddescription = document.getElementById("fooddescription").value;
-    let foodtype = document.getElementById("foodtype").value;
-    let foodprice = document.getElementById("foodprice").value;
-    let string = "";
-    if(foodname === "") {
-        string += "Name must be filled out \n"
-    }
-    if(foodtype ==="") {
-        string += "Type must be filled out \n"
-    }
-    if(foodprice=== ""){
-        string += "Price must be filled out \n"
-    }
-    if(fooddescription === ""){
-        string += "Food description must be filled out \n"
-    }
-    if(foodname === "" || fooddescription === "" || foodtype === "" || foodprice=== ""){
-        alert(string);
-    }
-    else { // encodeURIComponent om UTF-8 te gebruiken en speciale karakters om te zetten naar code
-        let information = "foodname=" + encodeURIComponent(foodname) + "&foodtype=" + encodeURIComponent(foodtype) + "&foodprice=" + encodeURIComponent(foodprice)
-        + "&fooddescription=" + encodeURIComponent(fooddescription);
-        newQuoteRequest.open("POST", "ConsumptieServlet?command=post", true);
-        // belangrijk dat dit gezet wordt anders kan de servlet de informatie niet interpreteren!!!
-        // protocol header information
-        newQuoteRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        newQuoteRequest.send(information);
-    }
-}
-async function deleteQuote(i) {
-    newQuoteRequest.open("GET", "ConsumptieServlet?command=delete&number=" + i, true);
-    newQuoteRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    newQuoteRequest.send();
-}
-async function editQuote(i){
-    window.location.replace("/form.html?number="+i);
-    // console.log(i);
-    // newQuoteRequest.open("GET", "ManageQuoteServlet?command=edit&number="+i, true);
-    // newQuoteRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    // newQuoteRequest.send();
-}
-async function search(){
-    window.location.replace("/search.html")
+function back(){
+    window.location.replace("/index.html")
 }

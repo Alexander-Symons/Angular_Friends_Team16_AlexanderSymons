@@ -83,6 +83,7 @@ function addQuote () {
 	let quoteScore = document.getElementById("quotescore").value;
 	// encodeURIComponent om UTF-8 te gebruiken en speciale karakters om te zetten naar code
 	let information = "quote=" + encodeURIComponent(quoteText) + "," + encodeURIComponent(quoteScore);
+	//&
 	console.log(information);
 	newQuoteRequest.open("POST", "ScoreServlet", true);
 	// belangrijk dat dit gezet wordt anders kan de servlet de informatie niet interpreteren!!!

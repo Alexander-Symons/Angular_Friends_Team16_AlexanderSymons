@@ -13,15 +13,25 @@
 </ul>
 </nav>
 <h1>Menu</h1>
+<div>
+    <input type="button" id="searchbutton" value="Filter pizzas" />
+</div>
 <div id="quote"></div>
 <div id="foo"></div>
+
+<table id="table">
+
+</table>
 <div>
-    <label>Quote</label><input type="text" id="quotetext"/>
+    <form>
+    <label>foodname</label><input type="text" id="foodname"/>
+        <label>description</label><input type="text" id ="fooddescription">
+    <label>type</label><input type="text" id ="foodtype">
+    <label>price</label><input type="text" id ="foodprice">
     <input type="button" id="quotebutton" value="Add Quote" />
+    </form>
 </div>
-<div>
-    <input type="button" id="searchbutton" value="Search" />
-</div>
+
 <script type="text/javascript" src="js/quote.js"></script>
 </body>
 </html>

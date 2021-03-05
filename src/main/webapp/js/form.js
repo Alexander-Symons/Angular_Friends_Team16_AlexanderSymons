@@ -17,21 +17,40 @@ function start() {
 function showQuote(){
     if (getNewQuoteRequest.readyState == 4) {
         if (getNewQuoteRequest.status == 200) {
-            let quote = JSON.parse(getNewQuoteRequest.responseText);
-            console.log(quote)
+
             console.log("test")
         }
     }
 }
 function editQuote () {
-    let quoteText = document.getElementById("food").value;
-    console.log(quoteText)
-    // encodeURIComponent om UTF-8 te gebruiken en speciale karakters om te zetten naar code
-    let information = "quote=" + encodeURIComponent(quoteText);
-    newQuoteRequest.open("POST", "ManageQuoteServlet?command=edit&number=" + t, true);
-    // belangrijk dat dit gezet wordt anders kan de servlet de informatie niet interpreteren!!!
-    // protocol header information
-    newQuoteRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    newQuoteRequest.send(information);
-    window.location.replace("/index.html");
+    console.log("test")
+    let foodname = document.getElementById("foodnaam").value;
+    let fooddescription = document.getElementById("foodbescrijving").value;
+    let foodtype = document.getElementById("foodtype").value;
+    let foodprice  = document.getElementById("foodprijs").value;
+    if(foodname === "") {
+        string += "Name must be filled out \n"
+    }
+    if(foodtype ==="") {
+        string += "Type must be filled out \n"
+    }
+    if(foodprice=== ""){
+        string += "Price must be filled out \n"
+    }
+    if(fooddescription === ""){
+        string += "Food description must be filled out \n"
+    }
+    if(foodname === "" || fooddescription === "" || foodtype === "" || foodprice=== ""){
+        alert(string);
+    }else {
+        // encodeURIComponent om UTF-8 te gebruiken en speciale karakters om te zetten naar code
+        let information = "foodname=" + encodeURIComponent(foodname) + "&foodtype=" + encodeURIComponent(foodtype) + "&foodprice=" + encodeURIComponent(foodprice)
+            + "&fooddescription=" + encodeURIComponent(fooddescription) + "&number=" + t;
+        newQuoteRequest.open("POST", "ConsumptieServlet?command=edit&number=" +t, true);
+        // belangrijk dat dit gezet wordt anders kan de servlet de informatie niet interpreteren!!!
+        // protocol header information
+        newQuoteRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        newQuoteRequest.send(information);
+        window.location.replace("/index.html");
+    }
 }
