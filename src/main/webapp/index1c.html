@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html>
@@ -6,56 +7,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
 </head>
-<body>
+<body id="body">
 <nav><ul><li><a href="/index.html">a</a></li>
     <li><a href="/index1b.html">b</a></li>
     <li><a href="/index1c.html">c</a></li>
 </ul>
 </nav>
+<p id="open"></p>
+<div>
+    <div>
+        <div>
+            <p id="bert">
+                Bert:
+            </p>
+        </div>
 
-<div>
-    <input type="text" id="messageinput"/>
+        <div>
+            <p id="jan">
+                Jan:
+            </p>
+        </div>
+
+        <div>
+            <p id="marie">
+                Marie:
+            </p>
+        </div>
+
+        <div>
+            <p id="jozef">
+                Jozef:
+            </p>
+        </div>
+
+        <p>
+            <label for="gezinslid"></label>
+            <select name="gezinslid" id="gezinslid">
+                <option value="bert">Bert</option>
+                <option value="jan">Jan</option>
+                <option value="marie">Marie</option>
+                <option value="jozef">Jozef</option>
+            </select>
+            <label for="item"></label><input type="text" id="item" name="wat" placeholder="item" width="50px">
+            <label for="aantal"></label><input type="number" id="aantal" name="aantal" placeholder="aantal" width="50px">
+            <input class="okButton" type="button" id="button" onclick="send()" value="ok">
+        </p>
+    </div>
 </div>
-<div>
-    <button type="button" onclick="openSocket();" >Open</button>
-    <button type="button" onclick="send();" >Send</button>
-    <button type="button" onclick="closeSocket();" >Close</button>
-</div>
+
 <div id="messages"></div>
 
-<script type="text/javascript">
-    var webSocket;
-    var messages = document.getElementById("messages");
-
-    function openSocket(){
-        webSocket = new WebSocket("ws://localhost:8080/echo");
-
-        webSocket.onopen = function(event){
-            writeResponse("Connection opened")
-        };
-
-        webSocket.onmessage = function(event){
-            writeResponse(event.data);
-        };
-
-        webSocket.onclose = function(event){
-            writeResponse("Connection closed");
-        };
-    }
-
-    function send(){
-        var text = document.getElementById("messageinput").value;
-        webSocket.send(text);
-    }
-
-    function closeSocket(){
-        webSocket.close();
-    }
-
-    function writeResponse(text){
-        messages.innerHTML += "<br/>" + text;
-    }
-</script>
+<script type="text/javascript" src="js/boodschappen.js"></script>
 
 </body>
 </html>
