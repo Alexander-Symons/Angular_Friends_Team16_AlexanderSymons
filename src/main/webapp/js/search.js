@@ -53,31 +53,29 @@ function showQuotes () {
                 let cellB = document.createElement("td");
                 let cellC = document.createElement("td");
                 let cellD = document.createElement("td");
-                let cellE = document.createElement("td");
-                let cellF = document.createElement("td");
 
                 cellA.innerHTML = consumpties[i].naam;
                 cellB.innerHTML = consumpties[i].beschrijving;
                 cellC.innerHTML = consumpties[i].type;
                 cellD.innerHTML = consumpties[i].prijs;
 
-                let button2 = document.createElement("button");
-                button2.textContent = "edit"
-                // searchbutton.setAttribute("test", i.toString())
-                button2.setAttribute("number", i.toString())
-                button2.addEventListener('click', function() {
-                    editQuote(this.getAttribute("number"));
-                }, false);
-                cellE.appendChild(button2)
-
-                let button = document.createElement("button");
-                button.textContent = "delete"
-                // searchbutton.setAttribute("test", i.toString())
-                button.setAttribute("number", i.toString())
-                button.addEventListener('click', function() {
-                    deleteQuote(this.getAttribute("number"));
-                }, false);
-                cellF.appendChild(button)
+                // let button2 = document.createElement("button");
+                // button2.textContent = "edit"
+                // // searchbutton.setAttribute("test", i.toString())
+                // button2.setAttribute("number", i.toString())
+                // button2.addEventListener('click', function() {
+                //     editQuote(this.getAttribute("number"));
+                // }, false);
+                // cellE.appendChild(button2)
+                //
+                // let button = document.createElement("button");
+                // button.textContent = "delete"
+                // // searchbutton.setAttribute("test", i.toString())
+                // button.setAttribute("number", i.toString())
+                // button.addEventListener('click', function() {
+                //     deleteQuote(this.getAttribute("number"));
+                // }, false);
+                // cellF.appendChild(button)
 
 
                 table.appendChild(row);
@@ -85,8 +83,6 @@ function showQuotes () {
                 row.appendChild(cellB);
                 row.appendChild(cellC);
                 row.appendChild(cellD);
-                row.appendChild(cellE);
-                row.appendChild(cellF);
             }
             setTimeout(getNewQuote, 1000);
         }

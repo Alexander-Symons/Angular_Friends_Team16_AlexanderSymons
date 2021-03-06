@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+</head>
+<body id="body">
+<header>
+    <nav><ul><li><a href="/index.html">a2</a></li>
+        <li><a href="/index1b.html">b2</a></li>
+        <li><a href="/index1c.html">c2</a></li>
+        <li><a href="werknemer_pullTeam1.html">a1</a></li>
+        <li><a href="consumptie_fetchTeam1.html">b1</a></li>
+        <li><a href="blog.html">c1</a></li>
+
+    </ul>
+    </nav>
+</header>
+<p id="open"></p>
+<div>
+    <div>
+        <div>
+            <p id="vaccine">
+                Jongeren moeten eerst corona vaccine krijgen.
+            </p>
+        </div>
+
+        <div>
+            <p id="coronaCijfers">
+                De corona cijfers stijgen door de kappers.
+            </p>
+        </div>
+
+        <div>
+            <p id="Cars_2">
+                Cars 2 is de beste cars film.
+            </p>
+        </div>
+
+        <div>
+            <p id="Toy_tory_3">
+                De beste Pixar film is Toy Story 3.
+            </p>
+        </div>
+
+        <p>
+            <label for="gebruikersNaam"></label><input type="text" id="gebruikersNaam" name="gebruikersNaam" placeholder="naam" width="50px">
+            <label for="comment"></label><input type="text" id="comment" name="comment" placeholder="Comment" width="50px">
+            <label for="topics"></label>
+            <select name="topics" id="topics">
+                <option value="vaccine">vaccine</option>
+                <option value="coronaCijfers">coronaCijfers</option>
+                <option value="Cars_2">Cars_2</option>
+                <option value="Toy_tory_3">Toy_tory_3</option>
+            </select>
+
+            <input class="okButton" type="button" id="button" onclick="send()" value="ok">
+        </p>
+    </div>
+</div>
+
+<div id="messages"></div>
+<script type="text/javascript" src="js/blog.js"></script>
+</body>
+</html>
