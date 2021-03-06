@@ -115,7 +115,7 @@ async function addQuote () {
     if(foodname === "") {
         string += "Name must be filled out \n"
     }
-    if(foodtype ==="") {
+    if(foodtype === "") {
         string += "Type must be filled out \n"
     }
     if(foodprice=== ""){
@@ -152,3 +152,4 @@ async function editQuote(i){
 async function search(){
     window.location.replace("/search.html")
 }
+

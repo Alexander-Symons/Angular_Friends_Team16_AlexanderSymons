@@ -24,6 +24,7 @@ function showQuote(){
 }
 function editQuote () {
     console.log("test")
+    let string = "";
     let foodname = document.getElementById("foodnaam").value;
     let fooddescription = document.getElementById("foodbescrijving").value;
     let foodtype = document.getElementById("foodtype").value;
