@@ -17,6 +17,7 @@ public class ConsumptieServlet extends HttpServlet {
     private ConsumptieRepository quoteRepository;
 
     public ConsumptieServlet() {
+        /**@Author Arne Artois & Alexander Symons **/
         super();
         quoteRepository = new ConsumptieRepository();
     }
@@ -35,12 +36,14 @@ public class ConsumptieServlet extends HttpServlet {
         }
         switch (command) {
             case "search":
+                /**@Author Alexander Symons **/
                 ArrayList<Consumptie> pizzas = quoteRepository.getAllPizzas();
                 String quoteJSON3 = this.toJSON(pizzas);
                 response.setContentType("application/json");
                 response.getWriter().write(quoteJSON3);
                 break;
             case "edit":
+                /**@Author Arne Artois **/
                 String editfoodname = (String)request.getParameter("foodname");
                 String editfooddescription = (String)request.getParameter("fooddescription");
                 String editfoodtype = (String)request.getParameter("foodtype");
@@ -56,6 +59,7 @@ public class ConsumptieServlet extends HttpServlet {
                 quoteRepository.getAllConsumpties().get(editnumber).setPrijs(editfoodprice);
                 break;
             case "editpage":
+                /**@Author Arne Artois **/
                 System.out.println(request.getParameter("number"));
                 Consumptie c =quoteRepository.getConsumptie(Integer.parseInt(request.getParameter("number")));
                 String quoteJSON = this.toJSON(c);
