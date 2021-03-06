@@ -1,10 +1,12 @@
 window.onload = getAllConsumpties;
 
 let btnConsumptie = document.getElementById('btnConsumptie');
-btnConsumptie.onclick = addConsumptie;
+btnConsumptie.onclick = addConsumptie
+
+let btnZoek = document.getElementById('btnZoek');
+btnZoek.onclick = zoekConsumptie
 
 function getAllConsumpties () {
-    console.log("test");
     fetch("/ConsumptieServlet")
         .then(response => response.json())
         .then((data => showConsumpties(data)));
@@ -40,6 +42,19 @@ function showConsumpties(consumpties) {
         row.appendChild(cellC);
         row.appendChild(cellD);
     }
+}
+
+    function zoekConsumptie() {
+    let zoekwoord = document.getElementById("zoekwoord").value;
+
+    const options = {
+        method: 'POST',
+        body: JSON.stringify({
+            zoekwoord: zoekwoord
+        }),
+        headers: {'Content-type': 'application/json; charset=UTF-8'}
+    }
+    fetch("ZoekServlet", options)
 }
 
 async function addConsumptie() {

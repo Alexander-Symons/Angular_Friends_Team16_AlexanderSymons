@@ -21,6 +21,17 @@ public class ConsumptieRepository {
         this.consumptieList.add(consumptie);
     }
 
+    public ArrayList<Consumptie> zoekConsumpties(String zoekwoord){
+        zoekwoord = zoekwoord.replace('"',' ').trim();
+        ArrayList<Consumptie> gevonden = new ArrayList<>();
+        for (Consumptie c : consumptieList){
+            if (c.getbeschrijving().contains(zoekwoord)){
+                gevonden.add(c);
+            }
+        }
+        return gevonden;
+    }
+
     public ArrayList<Consumptie> getAllConsumpties(){
         return consumptieList;
     }

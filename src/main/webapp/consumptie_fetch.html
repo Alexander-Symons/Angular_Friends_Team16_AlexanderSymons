@@ -6,7 +6,13 @@
 </head>
 
 <body>
-<h1>Quote of the moment ...</h1>
+<header>
+    <ul>
+        <li><a href="werknemer_pull.html">a</a></li>
+        <li><a href="consumptie_fetch.html">b</a></li>
+        <li><a href="blog.html">c</a></li>
+    </ul>
+</header>
 <div id="quote"></div>
 <div>
     <form>
@@ -25,7 +31,18 @@
         <input type="button" id="btnConsumptie" value="Add Consumptie" />
     </form>
 
+    <form>
+        <label for="zoekwoord">Zoek concumptie: </label>
+        <input type="text" id="zoekwoord"/><br>
+
+        <input type="button" id="btnZoek" value="Zoek Consumptie" />
+    </form>
+
     <table id="table">
+
+    </table>
+
+    <table id="gevondenConsumptie">
 
     </table>
 </div>
