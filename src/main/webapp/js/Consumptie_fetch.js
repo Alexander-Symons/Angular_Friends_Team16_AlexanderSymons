@@ -3,8 +3,6 @@ window.onload = getAllConsumpties;
 let btnConsumptie = document.getElementById('btnConsumptie');
 btnConsumptie.onclick = addConsumptie
 
-let btnZoek = document.getElementById('btnZoek');
-btnZoek.onclick = zoekConsumptie
 
 function getAllConsumpties () {
     fetch("/ConsumptieServletTeam1")
@@ -44,19 +42,6 @@ function showConsumpties(consumpties) {
     }
 }
 
-    function zoekConsumptie() {
-    let zoekwoord = document.getElementById("zoekwoord").value;
-
-    const options = {
-        method: 'POST',
-        body: JSON.stringify({
-            zoekwoord: zoekwoord
-        }),
-        headers: {'Content-type': 'application/json; charset=UTF-8'}
-    }
-    fetch("ZoekServletTeam1", options)
-}
-
 async function addConsumptie() {
 
     let naam = document.getElementById("naam").value;
@@ -80,41 +65,4 @@ async function addConsumptie() {
     }
     let test = await fetch("ConsumptieServletTeam1", options);
     location.reload()
-}
-
-
-
-
-
-
-
-
-
-function showQuotes () {
-            let quote = JSON.parse(getNewQuoteRequest.responseText);
-
-            let quoteDiv = document.getElementById("quote");
-            let quoteParagraph = quoteDiv.childNodes[0];
-            let quoteText = document.createTextNode(quote.text); // kan ook quote["text"]
-
-            if (quoteParagraph == null) {
-                quoteParagraph = document.createElement('p');
-                quoteParagraph.appendChild(quoteText);
-                quoteDiv.appendChild(quoteParagraph);
-            } else {
-                quoteParagraph.removeChild(quoteParagraph.childNodes[0]);
-                quoteParagraph.appendChild(quoteText);
-            }
-            setTimeout(getNewQuote, 1000);
-}
-
-function addQuote () {
-    let quoteText = document.getElementById("quotetext").value;
-    // encodeURIComponent om UTF-8 te gebruiken en speciale karakters om te zetten naar code
-    let information = "quote=" + encodeURIComponent(quoteText);
-    newQuoteRequest.open("POST", "ManageQuoteServlet", true);
-    // belangrijk dat dit gezet wordt anders kan de servlet de informatie niet interpreteren!!!
-    // protocol header information
-    newQuoteRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    newQuoteRequest.send(information);
 }

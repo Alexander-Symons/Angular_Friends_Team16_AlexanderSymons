@@ -20,16 +20,6 @@ public class ConsumptieRepositoryTeam1 {
         this.consumptieList.add(consumptie);
     }
 
-    public ArrayList<ConsumptieTeam1> zoekConsumpties(String zoekwoord){
-        zoekwoord = zoekwoord.replace('"',' ').trim();
-        ArrayList<ConsumptieTeam1> gevonden = new ArrayList<>();
-        for (ConsumptieTeam1 c : consumptieList){
-            if (c.getbeschrijving().contains(zoekwoord)){
-                gevonden.add(c);
-            }
-        }
-        return gevonden;
-    }
 
     public ArrayList<ConsumptieTeam1> getAllConsumpties(){
         return consumptieList;

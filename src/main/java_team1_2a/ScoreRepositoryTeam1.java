@@ -5,10 +5,10 @@ import java.util.Random;
 
 public class ScoreRepositoryTeam1 {
 
-	private List<EmployeeScoreTeam1> employeeScores = new ArrayList<EmployeeScoreTeam1>();
+	private ArrayList<EmployeeScoreTeam1> employeeScores;
 
 	public ScoreRepositoryTeam1() {
-		super();
+		this.employeeScores = new ArrayList<>();
 		EmployeeScoreTeam1 obama = new EmployeeScoreTeam1( "Obama", 1);
 		employeeScores.add(obama);
 		EmployeeScoreTeam1 king = new EmployeeScoreTeam1("pieter geens", 3);
@@ -17,23 +17,29 @@ public class ScoreRepositoryTeam1 {
 		employeeScores.add(x);
 	}
 
-	public void addQuote (String str) {
+	public void addEmployee (String str) {
 		String kept = str.substring( 0, str.indexOf(","));
 		String kept2 = str.substring( str.indexOf(",")+1);
 
 		int numb = Integer.parseInt(kept2);
 
 		employeeScores.add(new EmployeeScoreTeam1( kept, numb));
-
 	}
 
-	public EmployeeScoreTeam1 getRandomQuote() {
-		Random random = new Random();
-		int position = random.nextInt(employeeScores.size());
-		EmployeeScoreTeam1 employeeScore = employeeScores.get(position);
-		return employeeScore;
+
+	/**@Author Robbe Jacobs**/
+	public ArrayList<EmployeeScoreTeam1> employees(String zoekwoord){
+		zoekwoord = zoekwoord.replace('"',' ').trim();
+		ArrayList<EmployeeScoreTeam1> gevonden = new ArrayList<>();
+		for (EmployeeScoreTeam1 c : employeeScores){
+			if (c.getText().contains(zoekwoord)){
+				gevonden.add(c);
+			}
+		}
+		return gevonden;
 	}
-	public ArrayList<EmployeeScoreTeam1> getTop3Quotes(){
+
+	public ArrayList<EmployeeScoreTeam1> getTop3Employees(){
 		ArrayList<EmployeeScoreTeam1> b = new ArrayList<>(employeeScores);
 		ArrayList<EmployeeScoreTeam1> top3 = new ArrayList<>();
 		Collections.sort(b);
