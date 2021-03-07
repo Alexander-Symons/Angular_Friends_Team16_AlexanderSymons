@@ -49,6 +49,4 @@ public class ScoreRepositoryTeam1 {
 		Collections.sort(top3);
 		return top3;
 	}
-
-
 }
