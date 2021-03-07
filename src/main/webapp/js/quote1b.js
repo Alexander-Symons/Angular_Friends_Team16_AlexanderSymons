@@ -1,16 +1,16 @@
 window.onload = getNewQuote;
 
-// let quotebutton = document.getElementById('quotebutton');
-// quotebutton.onclick = addQuote;
+let quotebutton = document.getElementById('quotebutton');
+quotebutton.onclick = addConsumptie;
 // mag NIET addQuote() zijn hier
 // anders wordt het maar 1 keer uitgevoerd, namelijk na het laden van de html pagina
 // en het moet telkens wanneer er op de button wordt gedrukt uitgevoerd worden
 
-// let getNewQuoteRequest = new XMLHttpRequest();
+let getNewQuoteRequest = new XMLHttpRequest();
 // 0
 // The request is not initialized.
 // After you have created the XMLHttpRequest object, but before you have called the open() method.
-// let newQuoteRequest = new XMLHttpRequest();
+let newQuoteRequest = new XMLHttpRequest();
 
 function getNewQuote () {
 	// getNewQuoteRequest.open("GET", "ScoreServlet", true);
@@ -48,11 +48,11 @@ function showQuotes (quote) {
 			let quoteParagraph = quoteDiv.childNodes[0];
 			let quoteParagraph2 = quoteDiv2.childNodes[0];
 			let quoteParagraph3 = quoteDiv3.childNodes[0];
-			let quoteText = document.createTextNode(quote[0].text); // kan ook quote["text"]
-			let quoteText2 = document.createTextNode(quote[1].text);
-			let quoteText3 = document.createTextNode(quote[2].text);
-			console.log(quote[1].text)
-			console.log(quote[2].text)
+			let quoteText = document.createTextNode(quote[0].text + " " + quote[0].score); // kan ook quote["text"]
+			let quoteText2 = document.createTextNode(quote[1].text + " " + quote[1].score);
+			let quoteText3 = document.createTextNode(quote[2].text+ " " + quote[2].score);
+			// console.log(quote[1].text)
+			// console.log(quote[2].text)
 
 			if (quoteParagraph == null) {
 				quoteParagraph = document.createElement('p');
@@ -78,16 +78,35 @@ function showQuotes (quote) {
 	// }
 }
 
-function addQuote () {
-	let quoteText = document.getElementById("quotetext").value;
-	let quoteScore = document.getElementById("quotescore").value;
-	// encodeURIComponent om UTF-8 te gebruiken en speciale karakters om te zetten naar code
-	let information = "quote=" + encodeURIComponent(quoteText) + "," + encodeURIComponent(quoteScore);
-	//&
-	console.log(information);
-	newQuoteRequest.open("POST", "ScoreServlet", true);
-	// belangrijk dat dit gezet wordt anders kan de servlet de informatie niet interpreteren!!!
-	// protocol header information
-	newQuoteRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	newQuoteRequest.send(information);
+// function addQuote () {
+// 	let quoteText = document.getElementById("quotetext").value;
+// 	let quoteScore = document.getElementById("quotescore").value;
+// 	// encodeURIComponent om UTF-8 te gebruiken en speciale karakters om te zetten naar code
+// 	let information = "quote=" + encodeURIComponent(quoteText) + "," + encodeURIComponent(quoteScore);
+// 	//&
+// 	console.log(information);
+// 	newQuoteRequest.open("POST", "ScoreServlet", true);
+// 	// belangrijk dat dit gezet wordt anders kan de servlet de informatie niet interpreteren!!!
+// 	// protocol header information
+// 	newQuoteRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+// 	newQuoteRequest.send(information);
+// }
+async function addConsumptie() {
+
+	let naam = document.getElementById("quotetext").value;
+	let score = document.getElementById("quotescore").value;
+
+	let sNaam = encodeURIComponent(naam);
+	let sScore = encodeURIComponent(score);
+
+	const options = {
+		method: 'POST',
+		body: JSON.stringify({
+			text: sNaam,
+			score: sScore
+		}),
+		headers: {'Content-type': 'application/json; charset=UTF-8'}
+	}
+	let test = await fetch("ScoreServlet", options);
+	location.reload()
 }

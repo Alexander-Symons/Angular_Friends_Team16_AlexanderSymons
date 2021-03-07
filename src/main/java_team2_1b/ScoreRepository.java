@@ -18,6 +18,7 @@ public class ScoreRepository {
 	}
 
 	public void addQuote (String str) {
+		System.out.println(str);
 		String kept = str.substring( 0, str.indexOf(","));
 		String kept2 = str.substring( str.indexOf(",")+1);
 
@@ -25,6 +26,9 @@ public class ScoreRepository {
 
 		employeeScores.add(new EmployeeScore( kept, numb));
 
+	}
+	public void addEmployeeScore(EmployeeScore employeeScore){
+		employeeScores.add(employeeScore);
 	}
 
 	public EmployeeScore getRandomQuote() {
