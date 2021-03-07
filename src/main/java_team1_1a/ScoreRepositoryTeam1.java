@@ -49,4 +49,14 @@ public class ScoreRepositoryTeam1 {
 		Collections.sort(top3);
 		return top3;
 	}
+	/**@Author Arno Piersoul**/
+	public ArrayList<EmployeeScoreTeam1> employeesMinimumScore(int score){
+		ArrayList<EmployeeScoreTeam1> emps = new ArrayList<>();
+		for (EmployeeScoreTeam1 c : employeeScores){
+			if (c.getScore() >= score){
+				emps.add(c);
+			}
+		}
+		return emps;
+	}
 }

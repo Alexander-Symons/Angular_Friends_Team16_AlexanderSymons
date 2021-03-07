@@ -48,6 +48,22 @@ public class ScoreServletTeam1 extends HttpServlet {
 				String quoteJSON1 = this.toJSON(gevonden);
 				response.setContentType("application/json");
 				response.getWriter().write(quoteJSON1);
+				break;
+
+			/**@Author Arno Piersoul**/
+			case "employeesMinimum":
+				String score = null;
+				score = request.getParameter("score");
+				try {
+					int scoreInt = Integer.parseInt(score);
+					ArrayList<EmployeeScoreTeam1> emps = scoreRepository.employeesMinimumScore(scoreInt);
+					String minJson = this.toJSON(emps);
+					response.setContentType("application/json");
+					response.getWriter().write(minJson);
+				}
+				catch (Exception e){
+					System.out.println("error");
+				}
 		}
 	}
 

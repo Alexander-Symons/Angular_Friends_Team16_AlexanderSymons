@@ -6,12 +6,17 @@ addWerknemer.onclick = addEmployee;
 let btnZoek = document.getElementById('btnZoek');
 btnZoek.onclick = zoekWerknemer;
 
+
+let btnMinimum = document.getElementById('btnMinimum');
+btnMinimum.onclick = showMinimumEmployees;
+
 // mag NIET addQuote() zijn hier
 // anders wordt het maar 1 keer uitgevoerd, namelijk na het laden van de html pagina
 // en het moet telkens wanneer er op de button wordt gedrukt uitgevoerd worden
 
 let getWerknemersRequest = new XMLHttpRequest();
 let zoekWerknemersRequest = new XMLHttpRequest();
+let minimumEmpReq = new XMLHttpRequest();
 // 0
 // The request is not initialized.
 // After you have created the XMLHttpRequest object, but before you have called the open() method.
@@ -24,6 +29,7 @@ function getWerknemers () {
     // After you have called the open() method, but before you have called send().
     getWerknemersRequest.onreadystatechange = showWerknemers;
     zoekWerknemersRequest.onreadystatechange = showResult;
+    minimumEmpReq.onreadystatechange = showMinimumEmployeesResult();
     // mag NIET showQuotes() zijn
     // want dat wordt het maar 1 keer uitgevoerd
     // en het moet telkens wanneer de readystate van het xhr veranderd worden uitgevoerd
@@ -112,7 +118,34 @@ function showWerknemers () {
         }
     }
 }
-
+var minimumScore;
+//@Author Arno Piersoul
+function showMinimumEmployees(){
+    minimumScore = document.getElementById("score").value;
+    minimumEmpReq.open("POST", "ScoreServletTeam1?command=employeesMinimum", true)
+    minimumEmpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    minimumEmpReq.send("score=" + encodeURIComponent(minimumScore));
+}
+//@Author Arno Piersoul
+function showMinimumEmployeesResult(){
+    if (minimumEmpReq.readyState == 4) {
+        if (minimumEmpReq.status == 200) {
+            let emps = JSON.parse(minimumEmpReq.responseText);
+            let resdiv = document.getElementById("result2");
+            resdiv.innerHTML = "";
+            let header = document.createTextNode("Werknemers met een score van minstens " + minimumScore);
+            let headerNode = document.createElement('h2');
+            headerNode.appendChild(header);
+            resdiv.appendChild(headerNode);
+            for (let i = 0; i != emps.length; i++){
+                personeelsLidText = document.createTextNode(emps[i].text + " " + emps[i].score);
+                personeelsLidTextNode = document.createElement('p');
+                personeelsLidTextNode.appendChild(personeelsLidText);
+                resdiv.appendChild(personeelsLidTextNode);
+            }
+        }
+    }
+}
 function addEmployee () {
     let werknemerNaam = document.getElementById("werknemerNaam").value;
     let werknemerScore = document.getElementById("werknemerScore").value;
