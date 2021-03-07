@@ -17,7 +17,9 @@ public class ConsumptieServlet extends HttpServlet {
     private ConsumptieRepository quoteRepository;
 
     public ConsumptieServlet() {
-        /**@Author Arne Artois & Alexander Symons **/
+        /**
+         * @Author Arne Artois & Alexander Symons
+         **/
         super();
         quoteRepository = new ConsumptieRepository();
     }

@@ -10,15 +10,18 @@ const urlParams = new URLSearchParams(queryString);
 let t = urlParams.get('number')
 
 function start() {
-    getNewQuoteRequest.open("POST", "ManageQuoteServlet?command=editpage&number="+ t , true);
+    getNewQuoteRequest.open("POST", "ConsumptieServlet?command=editpage&number="+ t , true);
     getNewQuoteRequest.onreadystatechange = showQuote;
     getNewQuoteRequest.send();
 }
 function showQuote(){
     if (getNewQuoteRequest.readyState == 4) {
         if (getNewQuoteRequest.status == 200) {
-
-            console.log("test")
+            let consumptie = JSON.parse(getNewQuoteRequest.responseText);
+            document.getElementById("foodnaam").value = consumptie.naam;
+            document.getElementById("foodbescrijving").value = consumptie.beschrijving;
+            document.getElementById("foodtype").value = consumptie.type;
+            document.getElementById("foodprijs").value = consumptie.prijs;
         }
     }
 }
