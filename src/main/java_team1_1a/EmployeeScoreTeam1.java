@@ -13,6 +13,7 @@ public class EmployeeScoreTeam1 implements Comparable<EmployeeScoreTeam1> {
 		setScore(score);
 	}
 
+
 	public String getText() {
 		return text;
 	}
