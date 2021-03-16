@@ -55,6 +55,13 @@ function editQuote () {
         // protocol header information
         newQuoteRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         newQuoteRequest.send(information);
-        window.location.replace("/index.html");
+        newQuoteRequest.onreadystatechange = func
+    }
+    function func() {
+        if (getNewQuoteRequest.readyState == 4) {
+            if (getNewQuoteRequest.status == 200) {
+                window.location.replace("/index.html");
+            }
+        }
     }
 }
