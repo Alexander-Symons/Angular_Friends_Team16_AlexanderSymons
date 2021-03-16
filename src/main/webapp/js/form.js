@@ -58,8 +58,8 @@ function editQuote () {
         newQuoteRequest.onreadystatechange = func
     }
     function func() {
-        if (getNewQuoteRequest.readyState == 4) {
-            if (getNewQuoteRequest.status == 200) {
+        if (newQuoteRequest.readyState == 4) {
+            if (newQuoteRequest.status == 200) {
                 window.location.replace("/index.html");
             }
         }
