@@ -31,4 +31,7 @@ public class Group {
     public void addGroupmember(Person person){
         groupmembers.add(person);
     }
+    public int getSize(){
+        return groupmembers.size();
+    }
 }

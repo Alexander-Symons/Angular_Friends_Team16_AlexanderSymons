@@ -2,6 +2,7 @@
          pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -14,12 +15,24 @@
 </jsp:include>
 <main>
 <c:if test="${groups.size()>0 }">
-    <div class="danger">
-        <ul>
+    <div>
+        <table>
+            <tr>
+                <th>name</th>
+                <th>size</th>
+            </tr>
             <c:forEach var="group" items="${groups}">
-                <li>${group.groupname}</li>
+                <tr>
+                    <td>${group.groupname}</td>
+                    <td>${group.size}</td>
+                    <form method="post" action="">
+                        <label>Enter City :</label>
+                        <input id="cityName" name="cityName" size="30" type="text" />
+                        <input id="getWeatherReport" name="getWeatherReport" type="button" value="Get Weather" />
+                    </form>
+                </tr>
             </c:forEach>
-        </ul>
+        </table>
     </div>
 </c:if>
 </main>

@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import db.GroupRepository;
@@ -32,5 +33,18 @@ public class GroupService {
 
     public GroupRepository getGroupRepository() {
         return groupRepository;
+    }
+
+    public List<Group> getAllWithUser(Person person){
+        List<Group> result = new ArrayList<>();
+        for(Group g : getAll()){
+            for(Person p: g.getGroupmembers()){
+                if(p.getUserId().equals(person.getUserId())){
+                    result.add(g);
+                    break;
+                }
+            }
+        }
+        return result;
     }
 }
