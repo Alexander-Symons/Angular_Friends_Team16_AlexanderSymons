@@ -29,6 +29,16 @@
 				<input type="submit" id="logoutbutton" value="Log Out">
 			</p>
 		</form>
+		<form method="post" action="Controller?action=NewGroup">
+			<p>
+				<label for="groupname">Your email </label>
+				<input type="text" id="groupname" name="groupname" value="bestegroup">
+			</p>
+			<p>
+				<input type="submit" id="newgroupbutton" value="Add group">
+			</p>
+		</form>
+
 	</c:when>
 	<c:otherwise>
 		<form method="post" action="Controller?action=LogIn">

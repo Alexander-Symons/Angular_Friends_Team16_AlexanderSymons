@@ -11,13 +11,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import db.GroupRepositoryStub;
+import domain.GroupService;
 import domain.PersonService;
 
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	private PersonService model = new PersonService();
+
+	private PersonService personmodel = new PersonService();
+	private GroupService groupmodel = new GroupService(personmodel);
 	private ControllerFactory controllerFactory = new ControllerFactory();
 
 	public Controller() {
@@ -41,7 +44,7 @@ public class Controller extends HttpServlet {
         if (action != null) {
         	RequestHandler handler;
         	try {
-        		handler = controllerFactory.getController(action, model);
+        		handler = controllerFactory.getController(action, personmodel, groupmodel);
 				destination = handler.handleRequest(request, response);
         	} 
         	catch (NotAuthorizedException exc) {
