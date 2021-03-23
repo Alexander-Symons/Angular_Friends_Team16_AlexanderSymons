@@ -26,8 +26,7 @@
                 <tr>
                     <td>${group.groupname}</td>
                     <td>${group.size}</td>
-                    <td><input id="groupchat" name="GroupChat" type="button" value="${group.groupname}" onclick="send()"/></td>
-
+                    <td><input id="groupchat" name="GroupChat" type="button" onclick="send('${group.groupname}')"/></td>
                 </tr>
             </c:forEach>
         </table>

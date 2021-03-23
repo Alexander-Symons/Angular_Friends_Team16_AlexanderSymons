@@ -62,8 +62,7 @@
         //let naam = sessionStorage.getItem("user");
         let comment = document.getElementById("message").value;
         console.log(comment);
-
-
+        //TODO SEND JSON
         webSocket.send(" comment: "+ comment);
     }
     function writeResponse(text){

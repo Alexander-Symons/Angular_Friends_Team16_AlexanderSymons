@@ -6,18 +6,17 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @ServerEndpoint("/groupschat")
 public class groupchatServlet {
-
     private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
+//    private static final Map<String ,Session> sessions = Collections.synchronizedMap(new HashMap<String, Session>());
 
 
     @OnOpen
     public void onOpen(Session session){
+        System.out.println(session.getQueryString());
         sessions.add(session);
     }
 
