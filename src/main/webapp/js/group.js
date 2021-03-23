@@ -2,9 +2,9 @@
 var xHRObject = new XMLHttpRequest();
 
 function getNewQuote () {
-    xHRObject.open("POST", "GroupJSServlet", true);
-    xHRObject.onreadystatechange = getData;
-    xHRObject.send(null);
+    $.open("POST", "GroupJSServlet", true);
+    $.onreadystatechange = getData;
+    $.send(null);
 }
 
 function getData () {
@@ -31,4 +31,11 @@ function getData () {
             setTimeout(getNewQuote, 2000);
         }
     }
+}
+
+
+
+function send(){
+    let groupname = document.getElementById("groupchat").value;
+    window.location.replace("/groupchat.jsp?groupname="+groupname);
 }

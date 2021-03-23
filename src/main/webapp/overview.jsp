@@ -20,21 +20,20 @@
             <tr>
                 <th>name</th>
                 <th>size</th>
+                <th>groupschat</th>
             </tr>
             <c:forEach var="group" items="${groups}">
                 <tr>
                     <td>${group.groupname}</td>
                     <td>${group.size}</td>
-                    <form method="post" action="">
-                        <label>Enter City :</label>
-                        <input id="cityName" name="cityName" size="30" type="text" />
-                        <input id="getWeatherReport" name="getWeatherReport" type="button" value="Get Weather" />
-                    </form>
+                    <td><input id="groupchat" name="GroupChat" type="button" value="${group.groupname}" onclick="send()"/></td>
+
                 </tr>
             </c:forEach>
         </table>
     </div>
 </c:if>
 </main>
+<script type="text/javascript" src="../js/group.js"></script>
 </body>
 </html>
