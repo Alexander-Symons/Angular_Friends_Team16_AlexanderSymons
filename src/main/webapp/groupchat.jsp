@@ -38,7 +38,7 @@
 
 
     function openSocket(){
-        webSocket = new WebSocket("ws://localhost:8080/groupschat?groupname="+t);
+        webSocket = new WebSocket("ws://localhost:8080/groupschat");
 
         webSocket.onopen = function(event){
             writeResponse("Connection opened")
@@ -61,7 +61,7 @@
     function send(){
         //let naam = sessionStorage.getItem("user");
         let comment = document.getElementById("message").value;
-        //console.log(naam);
+        console.log(comment);
 
 
         webSocket.send(" comment: "+ comment);
