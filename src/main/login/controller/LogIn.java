@@ -2,11 +2,9 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import domain.Person;
 import domain.PersonService;
 
@@ -32,6 +30,7 @@ public class LogIn extends RequestHandler {
 			PersonService personService = super.getPersonService();
 			Person person = personService.getAuthenticatedUser(email, password);
 			if (person != null) {
+				person.setStatus("online");
 				createSession(person, request, response);
 			} else {
 				errors.add("No valid email/password");
