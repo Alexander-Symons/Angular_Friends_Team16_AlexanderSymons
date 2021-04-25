@@ -20,7 +20,6 @@
 
 
 
-
 <form>
     <label>message:</label><input type="text" id="message"/>
     <input type="button" id="sendmessage" value="send" onclick="send()">
@@ -33,9 +32,6 @@
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     let t = urlParams.get('groupname')
-    document.getElementById("p").innerHTML = t;
-
-
 
     function openSocket(){
         webSocket = new WebSocket("ws://localhost:8080/groupschat");
@@ -45,8 +41,9 @@
         };
 
         webSocket.onmessage = function(event){
-            writeResponse(event.data);
+                writeResponse(event);
         };
+
 
         webSocket.onclose = function(event){
             writeResponse("Connection closed");
@@ -63,13 +60,29 @@
         let comment = document.getElementById("message").value;
         console.log(comment);
         //TODO SEND JSON
-        webSocket.send(" comment: "+ comment);
+        var msg = {
+            chat: t,
+            reply: comment
+        }
+        webSocket.send(JSON.stringify(msg));
     }
-    function writeResponse(text){
-        comment = document.getElementById("p");
-        console.log(comment);
-        comment.innerHTML += "<br/>" + text ;
+    function writeResponse(event){
+        var msg = JSON.parse(event.data);
+        if(msg.chat === t){
+            comment = document.getElementById("p")
+            comment.innerHTML += "<br/>" + msg.reply
+        }
+
+        // comment = document.getElementById("p");
+        // console.log(comment);
+        // console.log(document.getElementById("reply").value = "")
+        // console.log(document.getElementById("chat").value = "")
+        // if(document.getElementById("chat") === t) {
+        //     comment.innerHTML += "<br/>" + document.getElementById("reply");
+        // }
+        // comment.innerHTML += "<br/>" + text ;
     }
 </script>
+<script src="js/jquery-1.11.0.js"></script>
 </body>
 </html>

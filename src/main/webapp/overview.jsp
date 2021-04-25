@@ -3,6 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
 
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,7 @@
 </jsp:include>
 <main>
 <c:if test="${groups.size()>0 }">
-    <div>
+    <div class = "hidden" style="display:none" >
         <table>
             <tr>
                 <th>name</th>
@@ -33,6 +34,9 @@
     </div>
 </c:if>
 </main>
+
 <script type="text/javascript" src="../js/group.js"></script>
+<script src="js/jquery-1.11.0.js"></script>
+<script src="js/effects.js"></script>
 </body>
 </html>
