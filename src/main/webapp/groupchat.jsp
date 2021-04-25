@@ -65,14 +65,12 @@
         let comment = document.getElementById("message").value;
         console.log(comment);
         //TODO SEND JSON
-        var msg = {
-            chat: t,
-            reply: comment
-        }
+        var msg = { chat: t, reply: comment };
         webSocket.send(JSON.stringify(msg));
     }
-    function writeResponse(event){
-        var msg = JSON.parse(event.data);
+    function writeResponse(data){
+        var msg = JSON.parse(data);
+        console.log(msg);
         if(msg.chat === t){
             comment = document.getElementById("p")
             comment.innerHTML += "<br/>" + msg.reply
@@ -88,7 +86,7 @@
         // comment.innerHTML += "<br/>" + text ;
     }
 </script>
-<script src="js/jquery-1.11.0.js"></script>
+<script src="js/jquery-3.6.0.js"></script>
 <script src="./js/effectsAlexanderSymons.js"></script>
 </body>
 </html>

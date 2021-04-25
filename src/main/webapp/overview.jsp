@@ -36,7 +36,7 @@
 </main>
 
 <script type="text/javascript" src="../js/group.js"></script>
-<script src="js/jquery-1.11.0.js"></script>
+<script src="js/jquery-3.6.0.js"></script>
 <script src="js/effects.js"></script>
 </body>
 </html>
