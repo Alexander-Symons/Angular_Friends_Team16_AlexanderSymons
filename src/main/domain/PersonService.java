@@ -16,6 +16,15 @@ public class PersonService {
 		return getPersonRepository().get(personId);
 	}
 
+	public Person findPerson(String naam){
+		for (Person p: personRepository.getAll()){
+			if (p.getFirstName().equals(naam)){
+				return p;
+			}
+		}
+		return null;
+	}
+
 	public List<Person> getPersons() {
 		return getPersonRepository().getAll();
 	}

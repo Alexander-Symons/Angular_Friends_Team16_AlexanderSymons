@@ -8,6 +8,8 @@
 <c:choose>
 <c:when test="${param.title=='Home'}">
     <li  id="actual"><a href="Controller">Home</a></li>
+    <li><a href="index_t1.jsp">Chat app</a> </li>
+    <li><a href="index.jsp">Group chat app</a> </li>
     <c:if test ="${sessionScope.user != null}">
     <li><a href="Controller?action=Overview">Overview</a></li>
     </c:if>
@@ -17,6 +19,8 @@
     <c:if test ="${sessionScope.user != null}">
     <li id="actual"><a href="Controller?action=Overview">Overview</a></li>
     </c:if>
+    <li><a href="index_t1.jsp">Chat app</a> </li>
+    <li><a href="index.jsp">Group chat app</a> </li>
 </c:otherwise>
 </c:choose>
 

@@ -1,43 +1,92 @@
 package domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Person {
 
 	private String userId;
+	@JsonIgnore
 	private String password;
+	@JsonIgnore
 	private String salt;
 	private String firstName;
 	private String lastName;
+	@JsonIgnore
 	private Role role;
+	private String status;
+	@JsonIgnore
+	private ArrayList<Person> friendlist;
+	private Map<Person, ArrayList<Bericht>> messages;
 
-	public Person(String userId, String password, String firstName,
-			String lastName,Role role) {
+	public Person(String userId, String password, String firstName, String lastName,Role role) {
 		setUserId(userId);
 		setHashedPassword(password);
 		setFirstName(firstName);
 		setLastName(lastName);
 		setRole(role);
+		setStatus("offline");
+		this.friendlist = new ArrayList<>();
+		this.messages = new HashMap<>();
 	}
 
-	public Person(String userId, String password, String salt,
-			String firstName, String lastName,Role role) {
+	public Person(String userId, String password, String salt, String firstName, String lastName,Role role) {
 		setUserId(userId);
 		setPassword(password);
 		setSalt(salt);
 		setFirstName(firstName);
 		setLastName(lastName);
+		setStatus("offline");
 		setRole(role);
+		this.friendlist = new ArrayList<>();
 	}
 
-	public Person() {
+	public void addMessage(Person zender, Person second_person, String bericht){
+		int teller = 0;
+		try {
+			this.messages.get(second_person).add(new Bericht(zender,bericht));
+		}catch (Exception e){
+			System.out.println("test");
+		}
+	}
+
+	public ArrayList<Bericht> getBerichten(){
+		return this.messages.get(this);
+	}
+
+	public ArrayList<Bericht> getBerichten(Person second){
+		return this.messages.get(second);
+	}
+
+	public ArrayList<Person> getFriendlist(){
+		return this.friendlist;
+	}
+
+	public Person getVriendByName(String naam){
+		for(Person p: friendlist){
+			if(p.getFirstName().equalsIgnoreCase(naam)){
+				return p;
+			}
+		}
+		return null;
+	}
+
+	public void addFriend(Person person){
+		if (!friendlist.contains(person)){
+			this.friendlist.add(person);
+			messages.put(person,new ArrayList<>());
+		}else{
+			System.out.println("al toegevoegd");
+		}
 	}
 
 	public Role getRole() {
@@ -47,7 +96,14 @@ public class Person {
 	public void setRole(Role role) {
 		this.role=role;
 	}
-	
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public void setUserId(String userId) {
 		if (userId.isEmpty()) {
