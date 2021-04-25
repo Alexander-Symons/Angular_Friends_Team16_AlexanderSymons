@@ -1,3 +1,5 @@
+package java_opdracht1;
+
 import java.util.ArrayList;
 
 public class ConsumptieRepositoryTeam1 {
