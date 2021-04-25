@@ -23,7 +23,6 @@
 	</div>
 </c:if> <c:choose>
 	<c:when test="${user!=null}">
-		<p>Welcome ${user.getFirstName()}!</p>
 		<form method="post" action="Controller?action=LogOut">
 			<p>
 				<input type="submit" id="logoutbutton" value="Log Out">
@@ -31,7 +30,7 @@
 		</form>
 		<form method="post" action="Controller?action=NewGroup">
 			<p>
-				<label for="groupname">Your email </label>
+				<label for="groupname">Create group </label>
 				<input type="text" id="groupname" name="groupname" value="bestegroup">
 			</p>
 			<p>

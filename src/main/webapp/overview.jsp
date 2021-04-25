@@ -10,11 +10,43 @@
 <jsp:include page="head.jsp">
     <jsp:param name="title" value="Overview" />
 </jsp:include>
-<body>
+<body onload="getEmailAjax()">
 <jsp:include page="header.jsp">
     <jsp:param name="title" value="Overview" />
 </jsp:include>
 <main>
+    <div id="emailajax"></div>
+    <form method="post">
+        <label>Show role:</label>
+        <input id="getRoleAJAX" name="getRoleAJAX" type="button" value="Get Role" />
+    </form>
+    <div id="roleAJAX" class="outputTextArea"></div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        function getEmailAjax () {
+            $.ajax({
+                type: "GET",
+                url: "Test",
+                dataType: "json",
+                success: function(json){
+                    $('#emailajax').html(json.userId);
+                },
+                error: function() {
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#getRoleAJAX").click(function(){
+                $.post("Test2", function(data) {
+                    var newParagraph = $('<p />').text(data);
+                    $('#roleAJAX').empty();
+                    $('#roleAJAX').append(newParagraph);
+                });
+            });
+        });
+    </script>
 <c:if test="${groups.size()>0 }">
     <div class = "hidden" style="display:none" >
         <table>
