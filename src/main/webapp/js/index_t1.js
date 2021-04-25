@@ -1,3 +1,5 @@
+var audio;
+
 $(document).ready(function (){
     $.ajax({
         url: "ChangeStatus",
@@ -33,7 +35,8 @@ $(document).ready(function() {
         });
     });
 });
-
+var chatLength;
+var init = true;
 $(document).ready(function(){
     setInterval(function(){
         $.ajax({
@@ -41,7 +44,16 @@ $(document).ready(function(){
             url: "VerstuurBerichten?ontvanger=" + $('.chatbox').attr("id"),
             dataType: "json",
             success: function (json) {
-                console.log(json);
+
+                //@Author Arno Piersoul
+                //----
+                if (chatLength != json.length && init == false){
+                    playSound();
+                }
+                chatLength = json.length;
+                init = false;
+                //----
+
                 $('.outputMessage').empty();
                 $(json).each(function (index, bericht){
                     $test = document.createElement('p')
@@ -49,7 +61,6 @@ $(document).ready(function(){
                     $test.innerText = bericht.zender.firstName + " : " + bericht.message;
                     $('.outputMessage').append($test);
                 })
-
             },
             error: function () {
                 $('.outputMessage').empty();
@@ -69,7 +80,15 @@ $('#showFriendlist').on('click',function(){
         $('#allFriends').show(1000);
     }
 });
-
+//@Author Arno Piersoul
+$(document).ready(function() {
+    audio = document.createElement('audio');
+    audio.setAttribute('src', 'audio/notification.wav');
+});
+//@Author Arno Piersoul
+function playSound(){
+    audio.play();
+}
 $(document).ready(function () {
     function poll() {
         $.get({
