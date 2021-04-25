@@ -20,10 +20,13 @@
 
 
 
+
 <form>
     <label>message:</label><input type="text" id="message"/>
     <input type="button" id="sendmessage" value="send" onclick="send()">
 </form>
+
+
 
 <script>
     document.getElementById("body").onload = openSocket;
@@ -32,6 +35,9 @@
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     let t = urlParams.get('groupname')
+    document.getElementById("p").innerHTML = t;
+
+
 
     function openSocket(){
         webSocket = new WebSocket("ws://localhost:8080/groupschat");
@@ -41,9 +47,8 @@
         };
 
         webSocket.onmessage = function(event){
-                writeResponse(event);
+            writeResponse(event.data);
         };
-
 
         webSocket.onclose = function(event){
             writeResponse("Connection closed");
@@ -84,5 +89,6 @@
     }
 </script>
 <script src="js/jquery-1.11.0.js"></script>
+<script src="./js/effectsAlexanderSymons.js"></script>
 </body>
 </html>
