@@ -26,7 +26,7 @@
         function getEmailAjax () {
             $.ajax({
                 type: "GET",
-                url: "Test",
+                url: "Team2Ajax1",
                 dataType: "json",
                 success: function(json){
                     $('#emailajax').html(json.userId);
@@ -39,7 +39,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $("#getRoleAJAX").click(function(){
-                $.post("Test2", function(data) {
+                $.post("Team2Ajax2", function(data) {
                     var newParagraph = $('<p />').text(data);
                     $('#roleAJAX').empty();
                     $('#roleAJAX').append(newParagraph);
