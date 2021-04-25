@@ -65,7 +65,7 @@ $(document).ready(function(){
             error: function () {
                 $('.outputMessage').empty();
                 $test = document.createElement('p')
-                $test.innerText = "Selecteer ieman om mee te chatten"
+                $test.innerText = "Selecteer iemand om mee te chatten"
                 $('.outputMessage').append($test);
             }
         });
@@ -80,11 +80,13 @@ $('#showFriendlist').on('click',function(){
         $('#allFriends').show(1000);
     }
 });
+
 //@Author Arno Piersoul
 $(document).ready(function() {
     audio = document.createElement('audio');
     audio.setAttribute('src', 'audio/notification.wav');
 });
+
 //@Author Arno Piersoul
 function playSound(){
     audio.play();
