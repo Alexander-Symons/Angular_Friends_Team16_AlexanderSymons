@@ -1,3 +1,5 @@
+package java_opdracht1;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class EmployeeScore implements Comparable<EmployeeScore> {

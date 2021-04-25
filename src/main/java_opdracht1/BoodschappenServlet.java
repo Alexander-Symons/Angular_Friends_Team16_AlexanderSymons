@@ -1,3 +1,5 @@
+package java_opdracht1;
+
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;

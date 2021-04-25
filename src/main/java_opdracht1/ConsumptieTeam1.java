@@ -1,3 +1,5 @@
+package java_opdracht1;
+
 public class ConsumptieTeam1 {
 
     private String naam;
