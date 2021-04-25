@@ -10,7 +10,7 @@ const urlParams = new URLSearchParams(queryString);
 let t = urlParams.get('number')
 
 function start() {
-    getNewQuoteRequest.open("POST", "ConsumptieServlet?command=editpage&number="+ t , true);
+    getNewQuoteRequest.open("POST", "/ConsumptieServlet?command=editpage&number="+ t , true);
     getNewQuoteRequest.onreadystatechange = showQuote;
     getNewQuoteRequest.send();
 }
@@ -50,7 +50,7 @@ function editQuote () {
         // encodeURIComponent om UTF-8 te gebruiken en speciale karakters om te zetten naar code
         let information = "foodname=" + encodeURIComponent(foodname) + "&foodtype=" + encodeURIComponent(foodtype) + "&foodprice=" + encodeURIComponent(foodprice)
             + "&fooddescription=" + encodeURIComponent(fooddescription) + "&number=" + t;
-        newQuoteRequest.open("POST", "ConsumptieServlet?command=edit&number=" +t, true);
+        newQuoteRequest.open("POST", "/ConsumptieServlet?command=edit&number=" +t, true);
         // belangrijk dat dit gezet wordt anders kan de servlet de informatie niet interpreteren!!!
         // protocol header information
         newQuoteRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

@@ -1,15 +1,15 @@
-package java_opdracht1;
+package opdracht1;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class EmployeeScore implements Comparable<EmployeeScore> {
+public class EmployeeScoreTeam1 implements Comparable<EmployeeScoreTeam1> {
 
 	private String text;
 	private int score;
 	@JsonIgnore
 	private int nothing;
 
-	public EmployeeScore(String text, int score) {
+	public EmployeeScoreTeam1(String text, int score) {
 		super();
 		setText(text);
 		setScore(score);
@@ -32,7 +32,7 @@ public class EmployeeScore implements Comparable<EmployeeScore> {
 	}
 
 	@Override
-	public int compareTo(EmployeeScore o) {
+	public int compareTo(EmployeeScoreTeam1 o) {
 		if(this.getScore() <= o.getScore()){
 			return 1;
 		}

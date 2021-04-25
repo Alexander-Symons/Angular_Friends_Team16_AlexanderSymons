@@ -1,4 +1,4 @@
-package java_opdracht1;
+package opdracht1;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

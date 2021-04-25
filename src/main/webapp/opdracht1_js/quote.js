@@ -16,7 +16,7 @@ let getNewQuoteRequest = new XMLHttpRequest();
 let newQuoteRequest = new XMLHttpRequest();
 
 function getNewQuote () {
-    getNewQuoteRequest.open("GET", "ConsumptieServlet", true);
+    getNewQuoteRequest.open("GET", "/ConsumptieServlet", true);
     // 1
     // The request has been set up.
     // After you have called the open() method, but before you have called send().
@@ -130,7 +130,7 @@ async function addQuote () {
     else { // encodeURIComponent om UTF-8 te gebruiken en speciale karakters om te zetten naar code
         let information = "foodname=" + encodeURIComponent(foodname) + "&foodtype=" + encodeURIComponent(foodtype) + "&foodprice=" + encodeURIComponent(foodprice)
         + "&fooddescription=" + encodeURIComponent(fooddescription);
-        newQuoteRequest.open("POST", "ConsumptieServlet?command=post", true);
+        newQuoteRequest.open("POST", "/ConsumptieServlet?command=post", true);
         // belangrijk dat dit gezet wordt anders kan de servlet de informatie niet interpreteren!!!
         // protocol header information
         newQuoteRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -138,18 +138,18 @@ async function addQuote () {
     }
 }
 async function deleteQuote(i) {
-    newQuoteRequest.open("GET", "ConsumptieServlet?command=delete&number=" + i, true);
+    newQuoteRequest.open("GET", "/ConsumptieServlet?command=delete&number=" + i, true);
     newQuoteRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     newQuoteRequest.send();
 }
 async function editQuote(i){
-    window.location.replace("/form.html?number="+i);
+    window.location.replace("/opdracht1/form.html?number="+i);
     // console.log(i);
     // newQuoteRequest.open("GET", "ManageQuoteServlet?command=edit&number="+i, true);
     // newQuoteRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     // newQuoteRequest.send();
 }
 async function search(){
-    window.location.replace("/search.html")
+    window.location.replace("/opdracht1/search.html")
 }
 

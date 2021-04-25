@@ -107,6 +107,6 @@ async function addConsumptie() {
 		}),
 		headers: {'Content-type': 'application/json; charset=UTF-8'}
 	}
-	let test = await fetch("ScoreServlet", options);
+	let test = await fetch("/ScoreServlet", options);
 	location.reload()
 }

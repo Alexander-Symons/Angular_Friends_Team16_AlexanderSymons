@@ -1,4 +1,4 @@
-package java_opdracht1;
+package opdracht1;
 
 import java.io.IOException;
 import java.util.ArrayList;

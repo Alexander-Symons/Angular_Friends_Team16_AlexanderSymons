@@ -1,4 +1,4 @@
-package java_opdracht1;
+package opdracht1;
 
 public class Consumptie {
 

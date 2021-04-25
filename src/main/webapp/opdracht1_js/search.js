@@ -89,5 +89,5 @@ function showQuotes () {
     }
 }
 function back(){
-    window.location.replace("/index.html")
+    window.location.replace("/opdracht1/index.html")
 }

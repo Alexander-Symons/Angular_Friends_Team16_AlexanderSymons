@@ -63,6 +63,6 @@ async function addConsumptie() {
         }),
         headers: {'Content-type': 'application/json; charset=UTF-8'}
     }
-    let test = await fetch("ConsumptieServletTeam1", options);
+    let test = await fetch("/ConsumptieServletTeam1", options);
     location.reload()
 }

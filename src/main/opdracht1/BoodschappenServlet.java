@@ -1,4 +1,4 @@
-package java_opdracht1;
+package opdracht1;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
@@ -10,8 +10,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-@ServerEndpoint("/blog")
-public class BlogServlet {
+@ServerEndpoint("/boodschappen")
+public class BoodschappenServlet {
     private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
 
 

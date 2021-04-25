@@ -23,7 +23,7 @@ let minimumEmpReq = new XMLHttpRequest();
 let addWerknemerRequest = new XMLHttpRequest();
 
 function getWerknemers () {
-    getWerknemersRequest.open("GET", "ScoreServletTeam1?command=showEmployee", true);
+    getWerknemersRequest.open("GET", "/ScoreServletTeam1?command=showEmployee", true);
     // 1
     // The request has been set up.
     // After you have called the open() method, but before you have called send().
@@ -43,7 +43,7 @@ function getWerknemers () {
 //@Author Robbe Jacobs
 function zoekWerknemer() {
     let zoekwoord = document.getElementById("zoekwoord").value;
-    zoekWerknemersRequest.open("POST", "ScoreServletTeam1?command=zoekEmployee", true)
+    zoekWerknemersRequest.open("POST", "/ScoreServletTeam1?command=zoekEmployee", true)
     zoekWerknemersRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     zoekWerknemersRequest.send("zoekwoord=" + encodeURIComponent(zoekwoord));
 
@@ -122,7 +122,7 @@ var minimumScore;
 //@Author Arno Piersoul
 function showMinimumEmployees(){
     minimumScore = document.getElementById("score").value;
-    minimumEmpReq.open("POST", "ScoreServletTeam1?command=employeesMinimum", true)
+    minimumEmpReq.open("POST", "/ScoreServletTeam1?command=employeesMinimum", true)
     minimumEmpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     minimumEmpReq.send("score=" + encodeURIComponent(minimumScore));
 }
@@ -151,7 +151,7 @@ function addEmployee () {
     let werknemerScore = document.getElementById("werknemerScore").value;
     // encodeURIComponent om UTF-8 te gebruiken en speciale karakters om te zetten naar code
     let information = "naam=" + encodeURIComponent(werknemerNaam) + "," + encodeURIComponent(werknemerScore);
-    addWerknemerRequest.open("POST", "ScoreServletTeam1?command=addEmployee", true);
+    addWerknemerRequest.open("POST", "/ScoreServletTeam1?command=addEmployee", true);
     // belangrijk dat dit gezet wordt anders kan de servlet de informatie niet interpreteren!!!
     // protocol header information
     addWerknemerRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
