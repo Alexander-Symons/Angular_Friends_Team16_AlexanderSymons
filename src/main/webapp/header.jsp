@@ -8,11 +8,15 @@
 <c:choose>
 <c:when test="${param.title=='Home'}">
     <li  id="actual"><a href="Controller">Home</a></li>
+    <c:if test ="${sessionScope.user != null}">
     <li><a href="Controller?action=Overview">Overview</a></li>
+    </c:if>
 </c:when>
 <c:otherwise>
     <li><a href="Controller">Home</a></li>
+    <c:if test ="${sessionScope.user != null}">
     <li id="actual"><a href="Controller?action=Overview">Overview</a></li>
+    </c:if>
 </c:otherwise>
 </c:choose>
 
