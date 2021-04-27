@@ -15,11 +15,21 @@ public class NewGroup extends RequestHandler {
         HttpSession session = request.getSession();
         String string = request.getParameter("groupname");
         Person person = (Person) request.getSession().getAttribute("user");
-        Group group = new Group(string);
-        group.getGroupmembers().add(person);
-        getGroupService().addGroup(group);
-        System.out.println(group.getGroupmembers().size());
-        System.out.println(group.getGroupmembers().get(0).getFirstName());
+        Group newgroup = new Group(string);
+        boolean createnewgroup = true;
+        for(Group group: getGroupService().getAll()) {
+            if (group.getGroupname().equalsIgnoreCase(string)) {
+                group.addGroupmember(person);
+                createnewgroup = false;
+            }
+        }
+        if(createnewgroup) {
+            newgroup.addGroupmember(person);
+            getGroupService().addGroup(newgroup);
+        }
+
+//            System.out.println(group.getGroupmembers().size());
+//            System.out.println(group.getGroupmembers().get(0).getFirstName());
         return "index.jsp";
     }
 
