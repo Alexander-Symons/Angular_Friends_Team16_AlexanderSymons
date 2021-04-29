@@ -23,6 +23,7 @@
     <div id="roleAJAX" class="outputTextArea"></div>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
+        //* Author Arne Artois *//
         function getEmailAjax () {
             $.ajax({
                 type: "GET",
@@ -37,6 +38,7 @@
         }
     </script>
     <script type="text/javascript">
+        //* Author Arne Artois *//
         $(document).ready(function() {
             $("#getRoleAJAX").click(function(){
                 $.post("Team2Ajax2", function(data) {
@@ -49,24 +51,26 @@
     </script>
 <c:if test="${groups.size()>0 }">
     <div class = "hidden" style="display:none" >
-        <table>
-            <tr>
-                <th>name</th>
-                <th>size</th>
-                <th>groupschat</th>
-            </tr>
-            <c:forEach var="group" items="${groups}">
-                <tr>
-                    <td>${group.groupname}</td>
-                    <td>${group.size}</td>
-                    <td><input id="groupchat" name="GroupChat" type="button" onclick="send('${group.groupname}')"/></td>
-                </tr>
-            </c:forEach>
+        <table id="table">
         </table>
+<%--        <table>--%>
+<%--            <tr>--%>
+<%--                <th>name</th>--%>
+<%--                <th>size</th>--%>
+<%--                <th>groupschat</th>--%>
+<%--            </tr>--%>
+<%--            <c:forEach var="group" items="${groups}">--%>
+<%--                <tr>--%>
+<%--                    <td>${group.groupname}</td>--%>
+<%--                    <td>${group.size}</td>--%>
+<%--                    <td><input id="groupchat" name="GroupChat" type="button" onclick="send('${group.groupname}')"/></td>--%>
+<%--                </tr>--%>
+<%--            </c:forEach>--%>
+<%--        </table>--%>
     </div>
 </c:if>
 </main>
-
+<script src="js/fillgroupoverview "></script>
 <script type="text/javascript" src="../js/group.js"></script>
 <script src="js/jquery-3.6.0.js"></script>
 <script src="js/effects.js"></script>

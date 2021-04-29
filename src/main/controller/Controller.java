@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.RemoteEndpoint;
 
 import domain.GroupService;
 import domain.PersonService;
@@ -39,9 +40,11 @@ public class Controller extends HttpServlet {
 	protected void processRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        String async = request.getParameter("async");
         String destination = "index.jsp";
+
+		RequestHandler handler = null;
         if (action != null) {
-        	RequestHandler handler;
         	try {
         		handler = controllerFactory.getController(action, personmodel, groupmodel);
 				destination = handler.handleRequest(request, response);
@@ -53,8 +56,16 @@ public class Controller extends HttpServlet {
         		destination="index.jsp";
         	}
         }
-        RequestDispatcher view = request.getRequestDispatcher(destination);
-        view.forward(request, response);
+        if(handler instanceof AsyncRequesthandler){
+			response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(destination);
+		}
+        else{
+			RequestDispatcher view = request.getRequestDispatcher(destination);
+			view.forward(request, response);
+		}
+
 	}
 
 }

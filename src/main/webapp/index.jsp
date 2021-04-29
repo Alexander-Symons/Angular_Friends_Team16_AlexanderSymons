@@ -52,6 +52,9 @@
 			<p>
 				<input type="submit" id="loginbutton" value="Log in">
 			</p>
+			<p>bib@ucll.be , t</p>
+			<p>an@ucll.be , t</p>
+			<p>jan@ucll.be , t</p>
 		</form>
 	</c:otherwise>
 </c:choose> </main>
