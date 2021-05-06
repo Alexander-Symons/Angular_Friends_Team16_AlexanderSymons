@@ -12,18 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/OverviewJSON")
 public class OverviewJSON extends AsyncRequesthandler {
     public String handleRequest (HttpServletRequest request, HttpServletResponse response) throws IOException{
         HttpSession session = request.getSession();
-        Person person = (Person) session.getAttribute("user");
-        String personJSON = toJSON(person);
+        List<Group> groups = getGroupService().getAll();
+        String personJSON = toJSON(groups);
         return personJSON;
     }
 
-    private String toJSON (Person person) throws JsonProcessingException {
+    private String toJSON (List<Group> person) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         String json = mapper.writeValueAsString(person);

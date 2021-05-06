@@ -49,6 +49,7 @@
             });
         });
     </script>
+
 <c:if test="${groups.size()>0 }">
     <div class = "hidden" style="display:none" >
         <table id="table">
@@ -70,7 +71,7 @@
     </div>
 </c:if>
 </main>
-<script src="js/fillgroupoverview "></script>
+<script src="js/fillgroupoverview.js "></script>
 <script type="text/javascript" src="../js/group.js"></script>
 <script src="js/jquery-3.6.0.js"></script>
 <script src="js/effects.js"></script>
