@@ -18,7 +18,7 @@ public class PersonService {
 
 	public Person findPerson(String naam){
 		for (Person p: personRepository.getAll()){
-			if (p.getFirstName().equals(naam)){
+			if (p.getFirstName().equalsIgnoreCase(naam)){
 				return p;
 			}
 		}

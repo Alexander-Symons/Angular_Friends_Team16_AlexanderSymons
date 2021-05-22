@@ -27,7 +27,7 @@ public class GroupService {
         getGroupRepository().add(group);
     }
 
-    public void deletePerson(String groupName) {
+    public void deleteGroup(String groupName) {
         getGroupRepository().delete(groupName);
     }
 
