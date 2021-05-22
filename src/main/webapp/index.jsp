@@ -17,7 +17,7 @@
 	<div class="danger">
 		<ul>
 			<c:forEach var="error" items="${errors }">
-				<li>${error }</li>
+				<li>${error}</li>
 			</c:forEach>
 		</ul>
 	</div>
@@ -32,6 +32,22 @@
 			<p>
 				<label for="groupname">Create group </label>
 				<input type="text" id="groupname" name="groupname" value="bestegroup">
+			</p>
+			<p>
+				<label for="member1">member1 </label>
+				<input type="text" id="member1" name="member1" value="Jan">
+			</p>
+			<p>
+				<label for="member2">member2 </label>
+				<input type="text" id="member2" name="member2" value="An">
+			</p>
+			<p>
+				<label for="member3">member3 </label>
+				<input type="text" id="member3" name="member3" value="Ian">
+			</p>
+			<p>
+				<label for="member4">member4 </label>
+				<input type="text" id="member4" name="member4" value="Ivan">
 			</p>
 			<p>
 				<input type="submit" id="newgroupbutton" value="Add group">
