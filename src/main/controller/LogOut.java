@@ -13,7 +13,9 @@ public class LogOut extends RequestHandler {
 			HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		Person person =(Person) session.getAttribute("user");
-		person.setStatus("offline");
+		if(person != null){
+			person.setStatus("offline");
+		}
 		session.invalidate();
 		return "index.jsp";
 	}
