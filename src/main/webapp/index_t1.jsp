@@ -45,7 +45,7 @@
 
 		<form>
 			<h2>Add a person to your friend list</h2>
-			<label for="naam"> naam van persoon</label>
+			<label for="naam"> voornaam van persoon</label>
 			<input type="text" id="naam" placeholder="naam"><br>
 			<input type="button" id="addFriend" value="add friend to friendlist">
 		</form>
