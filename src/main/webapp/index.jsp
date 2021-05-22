@@ -71,6 +71,8 @@
 			<p>bib@ucll.be , t</p>
 			<p>an@ucll.be , t</p>
 			<p>jan@ucll.be , t</p>
+			<p>ian@ucll.be , t</p>
+			<p>ivan@ucll.be , t</p>
 		</form>
 	</c:otherwise>
 </c:choose> </main>
