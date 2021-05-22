@@ -14,8 +14,11 @@ public class GroupRepositoryStub implements GroupRepository {
     private Map<String, Group> groups = new HashMap<String, Group>();
 
     public GroupRepositoryStub (PersonService personService) {
-        Group group1 = new Group("everyone");
-        group1.setGroupmembers(personService.getPersons());
+        Group group1 = new Group("testgroup");
+        group1.addGroupmember(personService.findPerson("an"));
+        group1.addGroupmember(personService.findPerson("jan"));
+        group1.addGroupmember(personService.findPerson("ian"));
+        group1.addGroupmember(personService.findPerson("ivan"));
         groups.put(group1.getGroupname(),group1);
     }
 
@@ -36,7 +39,6 @@ public class GroupRepositoryStub implements GroupRepository {
             throw new IllegalArgumentException("No groupname given");
         }
         groups.remove(groupName);
-
     }
 
     @Override

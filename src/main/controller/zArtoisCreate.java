@@ -24,6 +24,8 @@ import javax.servlet.http.HttpSession;
 public class zArtoisCreate extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("application/json");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         String groupname = request.getParameter("groupname");
         String member1string = request.getParameter("member1");
         String member2string = request.getParameter("member2");

@@ -25,6 +25,8 @@ import javax.servlet.http.HttpSession;
 public class zArtoisDelete extends RequestHandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("application/json");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         String groupname = request.getParameter("groupname");
         List<Group> groups = getGroupService().getAll();
 //        for(int i = 0; i< groups.size(); i++){

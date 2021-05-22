@@ -48,4 +48,23 @@ public class PersonService {
 	private PersonRepository getPersonRepository() {
 		return personRepository;
 	}
+
+    public ArrayList<Person> findByName(String searchName) {
+		ArrayList<Person> result = new ArrayList<>();
+		for (Person p: personRepository.getAll()){
+			if (p.getFirstName().equalsIgnoreCase(searchName)){
+				result.add(p);
+			}
+		}
+		return result;
+    }
+
+	public Person findByEmail(String email){
+		for (Person p: personRepository.getAll()){
+			if (p.getUserId().equalsIgnoreCase(email)){
+				return p;
+			}
+		}
+		return null;
+	}
 }

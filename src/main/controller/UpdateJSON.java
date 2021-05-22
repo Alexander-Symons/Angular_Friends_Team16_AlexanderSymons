@@ -19,6 +19,8 @@ import java.util.*;
 public class UpdateJSON extends AsyncRequesthandler {
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("application/json");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         BufferedReader reader = request.getReader();
         ObjectMapper mapper = new ObjectMapper();
         JsonNode rootNode = mapper.readTree(reader);

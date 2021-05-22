@@ -40,7 +40,6 @@ public class Controller extends HttpServlet {
 	protected void processRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        String async = request.getParameter("async");
         String destination = "index.jsp";
 
 		RequestHandler handler = null;
