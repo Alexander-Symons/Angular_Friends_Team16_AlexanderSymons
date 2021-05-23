@@ -1,0 +1,23 @@
+<body>
+<h1>{{title}}</h1>
+<h2>search for a score of an Employee here</h2>
+<div>
+  <label>name: </label>
+  <input type="text" id="text" name="text" [(ngModel)]="score.text" required placeholder="name"/>
+  <label>score:</label>
+  <input type="number" id="score" name="score" [(ngModel)]="score.score" required placeholder="score">
+
+  <input type="button" (click)="searchScore()" value="Change Score">
+</div>
+
+<table>
+  <thead>
+  <th>Name:</th>
+  <th>Score:</th>
+  </thead>
+  <tr *ngFor="let score of scores">
+    <td>{{score.text}}</td>
+    <td>{{score.score}}</td>
+  </tr>
+</table>
+</body>

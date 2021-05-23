@@ -51,4 +51,18 @@ public class ScoreRepository {
 	}
 
 
+	public void deleteEmployeeScore(EmployeeScore employeeScore){
+		employeeScores.remove(employeeScore);
+	}
+
+	public ArrayList<EmployeeScore> findbyScore(int s){
+		ArrayList<EmployeeScore> found = new ArrayList<>();
+		for (EmployeeScore score: employeeScores) {
+			if(score.getScore() == s){
+				found.add(score);
+			}
+		}
+		return found;
+	}
+
 }

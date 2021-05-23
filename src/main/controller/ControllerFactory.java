@@ -2,25 +2,28 @@ package controller;
 
 import domain.GroupService;
 import domain.PersonService;
+import opdracht1.ScoreRepository;
 
 public class ControllerFactory {
-	
-    public RequestHandler getController(String key, PersonService model, GroupService groupService) {
-        return createHandler(key, model, groupService);
-    }
+
+	public controller.RequestHandler getController(String key, PersonService model, GroupService groupService, ScoreRepository scoreRepository) {
+		return createHandler(key, model, groupService, scoreRepository);
+	}
 //	public AsyncRequesthandler getAsyncController(String key, PersonService model, GroupService groupService) {
 //		return createAsyncHandler(key, model, groupService);
 //	}
 
 
-	private RequestHandler createHandler(String handlerName, PersonService model, GroupService groupService) {
-		RequestHandler handler = null;
+	private controller.RequestHandler createHandler(String handlerName, PersonService model, GroupService groupService, ScoreRepository scoreRepository) {
+		controller.RequestHandler handler = null;
 		try {
 			Class<?> handlerClass = Class.forName("controller."+ handlerName);
 			Object handlerObject = handlerClass.newInstance();
-			handler = (RequestHandler) handlerObject;
-	    	handler.setModel(model);
-	    	handler.setGroupService(groupService);
+			handler = (controller.RequestHandler) handlerObject;
+			handler.setModel(model);
+			handler.setGroupService(groupService);
+			handler.setScoreRepository(scoreRepository);
+
 		} catch (Exception e) {
 			throw new RuntimeException("Deze pagina bestaat niet!!!!");
 		}
